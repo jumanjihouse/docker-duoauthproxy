@@ -1,0 +1,23 @@
+--- install.orig        2014-12-23 19:08:11.295300746 +0000
++++ install     2014-12-23 19:09:14.960571585 +0000
+@@ -358,9 +358,9 @@
+
+ class AuthproxyInstaller(object):
+     INSTALL_DIR_DEFAULT = os.path.join('/opt', PRODUCT_NAME)
+-    USER_DEFAULT = 'nobody'
++    USER_DEFAULT = 'duo'
+
+-    def __init__(self, install_dir=None, service_user=None, do_initscript=None):
++    def __init__(self, install_dir=INSTALL_DIR_DEFAULT, service_user=USER_DEFAULT, do_initscript='yes'):
+         self.install_dir = install_dir
+         self.service_user = service_user
+         self.service_uid = None
+@@ -374,7 +374,7 @@
+
+     def install(self):
+         # user interaction
+-        self.show_license()
++        # self.show_license()
+         self.get_install_dir()
+         self.get_user()
+
