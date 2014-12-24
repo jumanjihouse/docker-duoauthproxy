@@ -1,0 +1,7 @@
+#!/bin/sh
+set -e
+
+# Import smitty.
+. script/functions
+
+git remote show upstream &> /dev/null || smitty git remote add upstream https://github.com/jumanjihouse/docker-duoauthproxy.git
