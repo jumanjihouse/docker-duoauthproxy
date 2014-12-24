@@ -32,8 +32,8 @@ How-to
 Build this image locally on a host with Docker:
 
     git clone https://github.com/jumanjihouse/docker-duoauthproxy.git
-    cd docker-duoauthproxy/src
-    docker build --rm -t duoauthproxy .
+    cd docker-duoauthproxy
+    script/build.sh
 
 Run a container with bash from the built image:
 
