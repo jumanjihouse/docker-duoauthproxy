@@ -9,9 +9,7 @@ tar
 which
 "
 
-yum -y install $dev_tools
-
-useradd duo
+yum -y install $dev_tools; yum clean all
 
 # Build and install authproxy.
 cd /root
@@ -22,22 +20,3 @@ make
 cd duoauthproxy-build
 patch -p0 < /root/install.patch
 ./install
-
-to_remove="
-gcc
-openssl-devel
-python-devel
-cloog-ppl
-cpp
-keyutils-libs-devel
-krb5-devel
-libcom_err-devel
-libselinux-devel
-libsepol-devel
-mpfr
-ppl
-zlib-devel
-"
-yum -y remove $to_remove
-
-yum clean all

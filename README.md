@@ -45,19 +45,18 @@ Licenses
 
 All files in this repo are subject to LICENSE (also in this repo).
 
-Your usage of the built docker image is subject to the terms at
-/root/duoauthproxy-*-src/duoauthproxy-build/doc/eula-linux.txt
+Your usage of the built docker image is subject to the terms
 within the built image.
 
 View the Duo end-user license agreement:
 
-    eula='/root/duoauthproxy-*-src/duoauthproxy-build/doc/eula-linux.txt'
+    eula='/opt/duoauthproxy/doc/eula-linux.txt'
     docker run --rm -it duoauthproxy bash -c "cat $eula"
 
-Get a list of licenses for third-party components within the image:
+Get a list of licenses for third-party components within the images:
 
-    dir='duoauthproxy-*-src
-    docker run --rm -it duoauthproxy bash -c "find $dir -iregex '.*license.*'"
+    dir='/root/duoauthproxy-*-src'
+    docker run --rm -it duoauthproxy-builder bash -c "find $dir -iregex '.*license.*'"
 
 At the time this document is created, the above commands shows:
 
