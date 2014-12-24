@@ -37,7 +37,29 @@ Build this image locally on a host with Docker:
 
 Run a container with bash from the built image:
 
-    docker run --rm -it duoauthproxy bash
+    docker run --rm -it --entrypoint=/bin/bash duoauthproxy
+
+Run a basic test to see if the container starts with its default config:
+
+    script/test.sh
+
+
+Configuration
+-------------
+
+The image assumes the configuration is at `/etc/duoauthproxy/authproxy.cfg`
+and provides a basic, default config file.
+To provide a custom configuration, create your config at that path on the
+docker host and run:
+
+    docker run -d -v /etc/duoauthproxy:/etc/duoauthproxy duoauthproxy
+
+Your custom config should contain a `[main]` section that includes:
+
+    [main]
+    log_stdout=true
+
+The above directive ensures that `docker logs <cid>` is meaningful.
 
 
 Licenses
@@ -51,12 +73,12 @@ within the built image.
 View the Duo end-user license agreement:
 
     eula='/opt/duoauthproxy/doc/eula-linux.txt'
-    docker run --rm -it duoauthproxy bash -c "cat $eula"
+    docker run --rm -it --entrypoint=/bin/bash duoauthproxy -c "cat $eula"
 
 Get a list of licenses for third-party components within the images:
 
     dir='/root/duoauthproxy-*-src'
-    docker run --rm -it duoauthproxy-builder bash -c "find $dir -iregex '.*license.*'"
+    docker run --rm -it --entrypoint=/bin/bash duoauthproxy-builder -c "find $dir -iregex '.*license.*'"
 
 At the time this document is created, the above commands shows:
 
