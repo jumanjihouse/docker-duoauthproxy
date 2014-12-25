@@ -3,7 +3,7 @@ set -e
 
 . script/functions
 
-start() {
+check_init() {
   max_sleep=5
   while [[ $max_sleep -gt 0 ]]; do
     max_sleep=$(( $max_sleep - 1 ))
@@ -18,5 +18,6 @@ start() {
 }
 
 smitty docker rm -f duoauthproxy || :
-smitty docker run -d --name duoauthproxy duoauthproxy
-smitty start
+smitty docker run --rm --entrypoint /bin/bash duoauthproxy:${base_distro} -c "cat /etc/os-release || cat /etc/centos-release"
+smitty docker run -d --name duoauthproxy duoauthproxy:${base_distro}
+smitty check_init

@@ -1,15 +1,32 @@
-# https://www.duosecurity.com/docs/authproxy_reference#installation
-dev_tools="
-gcc
-make
-openssl-devel
-patch
-python-devel
-tar
-which
-"
+#!/bin/bash
 
-yum -y install $dev_tools; yum clean all
+# https://www.duosecurity.com/docs/authproxy_reference#installation
+
+. /etc/os-release || :
+
+if [[ $ID =~ ubuntu ]]; then
+  dev_tools="
+    build-essential
+    libssl-dev
+    python-dev
+  "
+  apt-get update
+  apt-get -q -y install $dev_tools
+  apt-get clean
+else
+  # Assume centos or similar.
+  dev_tools="
+    gcc
+    make
+    openssl-devel
+    patch
+    python-devel
+    tar
+    which
+  "
+  yum -y install $dev_tools
+  yum clean all
+fi
 
 # Build and install authproxy.
 cd /root

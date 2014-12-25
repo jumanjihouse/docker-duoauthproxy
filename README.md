@@ -1,5 +1,5 @@
-Duo Authproxy on Centos6
-========================
+Duo AuthProxy on Linux
+======================
 
 Overview
 --------
@@ -29,19 +29,37 @@ References
 How-to
 ------
 
-Build this image locally on a host with Docker:
+Build an image with your preferred userspace locally on a host with Docker:
 
-    git clone https://github.com/jumanjihouse/docker-duoauthproxy.git
-    cd docker-duoauthproxy
-    script/build.sh
+    script/build.sh centos6
+    script/build.sh centos7
+    script/build.sh ubuntu
 
 Run a container with bash from the built image:
 
-    docker run --rm -it --entrypoint=/bin/bash duoauthproxy
+    docker run --rm -it --entrypoint=/bin/bash duoauthproxy:centos6
+    docker run --rm -it --entrypoint=/bin/bash duoauthproxy:centos7
+    docker run --rm -it --entrypoint=/bin/bash duoauthproxy:ubuntu
 
 Run a basic test to see if the container starts with its default config:
 
-    script/test.sh
+    script/test.sh centos6
+    script/test.sh centos7
+    script/test.sh ubuntu
+
+Build all images:
+
+    $ script/build-all.sh
+    duoauthproxy           centos6    f4929afc3b75    8 minutes ago    278.5 MB
+    duoauthproxy           centos7    ebc5592683ca    5 minutes ago    419.4 MB
+    duoauthproxy           ubuntu     8e6495e7b9b8    3 seconds ago    281.8 MB
+    duoauthproxy-builder   centos6    91bda67b530a    9 minutes ago    440.2 MB
+    duoauthproxy-builder   centos7    79db91e084e3    5 minutes ago    601 MB
+    duoauthproxy-builder   ubuntu     1daefd2370bc    42 seconds ago   541.2 MB
+
+Run the basic test on all images:
+
+    script/test-all.sh
 
 
 Configuration
