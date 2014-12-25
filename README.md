@@ -4,13 +4,18 @@ Duo AuthProxy on Linux
 Overview
 --------
 
+This repo provides a way to build Duo Authentication Proxy into
+a docker image and run it as a container.
+
 [Duo Authentication Proxy](https://www.duosecurity.com/docs/authproxy_reference)
 provides a local proxy service to enable on-premise integrations
 between VPNs, devices, applications, and
 [Duo two-factor authentication](https://www.duosecurity.com/docs).
 
-This repo provides a way to build Duo Authentication Proxy into
-a docker image and run it as a container.
+For example, you can [provide two-factor auth on Citrix Netscaler via the Duo AuthProxy]
+(https://www.duosecurity.com/docs/citrix_netscaler):
+
+![Duo + Netscaler](https://www.duosecurity.com/static/images/docs/citrixns/netscaler_network_diagram.png)
 
 
 Status
