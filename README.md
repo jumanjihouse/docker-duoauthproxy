@@ -13,9 +13,46 @@ between VPNs, devices, applications, and
 [Duo two-factor authentication](https://www.duosecurity.com/docs).
 
 For example, you can [provide two-factor auth on Citrix Netscaler via the Duo AuthProxy]
-(https://www.duosecurity.com/docs/citrix_netscaler):
+(https://www.duosecurity.com/docs/citrix_netscaler).
 
-![Duo + Netscaler](https://www.duosecurity.com/static/images/docs/citrixns/netscaler_network_diagram.png)
+
+### Network diagram
+
+![Duo network diagram](https://www.duosecurity.com/static/images/docs/authproxy/radius-network-diagram.png)
+<br />Source: [https://www.duosecurity.com/docs/radius](https://www.duosecurity.com/docs/radius)
+
+Actors:
+
+* *Application or Service* is any RADIUS **client**, such as Citrix Netscaler,
+  Juniper SSL VPN, Cisco ASA, f5, OpenVPN, or [others](https://www.duosecurity.com/docs).
+
+* *Authentication Proxy* is the container described by this repo.
+  - It acts as a RADIUS **server** for the application or service.
+  - It acts as a **client** to a primary auth service (either Active Directory or RADIUS).
+  - It acts as an HTTPS **client** to DUO hosted service.
+
+* *Active Directory or RADIUS* is a primary authentication service.
+
+* *DUO* is a hosted service to simplify two-factor authentication.
+
+Flow:
+
+1. User provides username and password to the application or service.
+
+2. Application (RADIUS client) offers credentials to AuthProxy (RADIUS server).
+
+3. AuthProxy acts as either a RADIUS client or an Active Directory client
+   and tries to authenticate against the primary backend auth service.
+
+4. If step 3 is successful, AuthProxy establishes a single https connection
+   to DUO hosted service to validate second authentication factor with user.
+
+5. User provides the second authentication factor, either *approve* or *deny*.
+
+6. DUO terminates the https connection established by AuthProxy with pass/fail,
+   and AuthProxy returns the pass/fail to Application.
+
+7. Application accepts or denies the user authentication attempt.
 
 
 Status
