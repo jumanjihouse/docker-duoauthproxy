@@ -7,13 +7,14 @@ Overview
 This repo provides a way to build Duo Authentication Proxy into
 a docker image and run it as a container.
 
-[Duo Authentication Proxy](https://www.duosecurity.com/docs/authproxy_reference)
-provides a local proxy service to enable on-premise integrations
-between VPNs, devices, applications, and
-[Duo two-factor authentication](https://www.duosecurity.com/docs).
+Duo Authentication Proxy provides a local proxy service to enable
+on-premise integrations between VPNs, devices, applications,
+and hosted Duo or Trustwave two-factor authentication (2fa).
 
-For example, you can [provide two-factor auth on Citrix Netscaler via the Duo AuthProxy]
-(https://www.duosecurity.com/docs/citrix_netscaler).
+
+### Status
+
+:warning: This container is not yet ready for deployment.
 
 
 ### Network diagram
@@ -44,32 +45,29 @@ Flow:
 3. AuthProxy acts as either a RADIUS client or an Active Directory client
    and tries to authenticate against the primary backend auth service.
 
-4. If step 3 is successful, AuthProxy establishes a single https connection
+4. If step 3 is successful, AuthProxy establishes a single HTTPS connection
    to DUO hosted service to validate second authentication factor with user.
 
 5. User provides the second authentication factor, either *approve* or *deny*.
 
-6. DUO terminates the https connection established by AuthProxy with pass/fail,
+6. DUO terminates the HTTPS connection established by AuthProxy with pass/fail,
    and AuthProxy returns the pass/fail to Application.
 
 7. Application accepts or denies the user authentication attempt.
 
 
-Status
-------
-
-:warning: This is not ready for deployment.
-
-
-References
-----------------
+### References
 
 * [Duo Authentication Proxy](https://www.duosecurity.com/docs/authproxy_reference)
-* [Duo two-factor authentication](https://www.duosecurity.com/docs)
+* [2fa on Citrix Netscaler via the Duo AuthProxy](https://www.duosecurity.com/docs/citrix_netscaler)
+* [Duo 2fa integrations](https://www.duosecurity.com/docs)
+* [Trustwave managed 2fa](http://www.trustwave.com/Services/Managed-Security/Managed-Two-Factor-Authentication/)
 
 
 How-to
 ------
+
+### Build the docker image
 
 Build an image with your preferred userspace locally on a host with Docker:
 
@@ -104,8 +102,7 @@ Run the basic test on all images:
     script/test-all.sh
 
 
-Configuration
--------------
+### Configure the authproxy
 
 The image assumes the configuration is at `/etc/duoauthproxy/authproxy.cfg`
 and provides a basic, default config file.
