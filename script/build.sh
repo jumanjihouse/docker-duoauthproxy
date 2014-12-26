@@ -7,6 +7,16 @@ common_tag="duoauthproxy-common"
 builder_tag="duoauthproxy-builder:${base_distro}"
 runtime_tag="duoauthproxy:${base_distro}"
 
+# We need radclient for testing.
+smitty pushd radclient
+smitty docker build --rm -t radclient .
+smitty popd
+
+# We need radiusd for testing.
+smitty pushd radiusd
+smitty docker build --rm -t radiusd .
+smitty popd
+
 smitty pushd $base_distro
 smitty docker build --rm -t $common_tag .
 smitty popd

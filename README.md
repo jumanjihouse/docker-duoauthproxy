@@ -81,12 +81,6 @@ Run a container with bash from the built image:
     docker run --rm -it --entrypoint=/bin/bash duoauthproxy:centos7
     docker run --rm -it --entrypoint=/bin/bash duoauthproxy:ubuntu
 
-Run a basic test to see if the container starts with its default config:
-
-    script/test.sh centos6
-    script/test.sh centos7
-    script/test.sh ubuntu
-
 Build all images:
 
     $ script/build-all.sh
@@ -97,7 +91,52 @@ Build all images:
     duoauthproxy-builder   centos7    79db91e084e3    5 minutes ago    601 MB
     duoauthproxy-builder   ubuntu     1daefd2370bc    42 seconds ago   541.2 MB
 
-Run the basic test on all images:
+
+### Test
+
+You can run an acceptance test harness to verify operation.
+
+First, create a free personal account at https://signup.duosecurity.com/
+and create two integrations.
+
+First integration:
+
+* Integration type: RADIUS
+* Integration name: test-radius-allow
+* Policy: Allow access (Unenrolled users will pass through without two-factor authentication)
+* Username normalization: None
+
+Second integration:
+
+* Integration type: RADIUS
+* Integration name: test-radius-deny
+* Policy: Deny access (Unenrolled users will be denied access)
+* Username normalization: None
+
+:warning: This test harness assumes your Duo account does *not*
+have a user named "test".
+
+Create a local file at the root of the repo named `environment`.
+The file holds keys for the integrations you created above.
+
+    # environment
+    API_HOST=api-xxxxxxxx.duosecurity.com
+
+    # This integration allows users without 2fa.
+    IKEY_ALLOW=DIxxxxxxxxxxxxxxxxxx
+    SKEY_ALLOW=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+    # This integration denies users without 2fa.
+    IKEY_DENY=DIxxxxxxxxxxxxxxxxxx
+    SKEY_DENY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+Run the test harness on a single image:
+
+    script/test.sh centos6
+    script/test.sh centos7
+    script/test.sh ubuntu
+
+Run the test harness on all images:
 
     script/test-all.sh
 
@@ -152,3 +191,10 @@ At the time this document is created, the above commands shows:
     duoauthproxy-2.4.8-src/pkgs/virtualenv-1.9.1/LICENSE.txt
     duoauthproxy-2.4.8-src/pkgs/pyparsing-1.5.7/LICENSE
     duoauthproxy-2.4.8-src/pkgs/pyrad-2.0/LICENSE.txt
+
+
+Thanks
+------
+
+Thanks to Duo for providing free personal accounts that make
+the test harness in this repo possible.
