@@ -95,6 +95,8 @@ Build all images:
 ### Test
 
 You can run an acceptance test harness to verify operation.
+The test harness runs at https://app.wercker.com/#applications/54a04a9107fa3ea41500fd01
+for each pull request.
 
 First, create a free personal account at https://signup.duosecurity.com/
 and create two integrations.
