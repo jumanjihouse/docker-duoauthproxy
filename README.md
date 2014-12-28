@@ -1,7 +1,7 @@
 Duo AuthProxy on Linux
 ======================
 
-Overview
+Overview [![wercker status](https://app.wercker.com/status/29aaf67f4cb14dee1e8acdc1360e8f52/s/master "wercker status")](https://app.wercker.com/project/bykey/29aaf67f4cb14dee1e8acdc1360e8f52)
 --------
 
 This repo provides a way to build Duo Authentication Proxy into
@@ -92,9 +92,10 @@ Build all images:
     duoauthproxy-builder   ubuntu     1daefd2370bc    42 seconds ago   541.2 MB
 
 
-### Test
+### Test locally
 
-An acceptance test harness runs at https://app.wercker.com/#applications/54a04a9107fa3ea41500fd01
+An acceptance test harness runs on
+[wercker.com](https://app.wercker.com/#applications/54a04a9107fa3ea41500fd01)
 for each pull request. You do not need to do anything other than open a PR
 in order to test changes on wercker.
 
