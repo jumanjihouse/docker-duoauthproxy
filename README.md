@@ -6,6 +6,14 @@ Overview [![wercker status](https://app.wercker.com/status/29aaf67f4cb14dee1e8ac
 
 This repo provides a way to build Duo Authentication Proxy into
 a docker image and run it as a container.
+It provides containers based on your choice of:
+
+* Ubuntu latest stable
+* Centos6 latest stable
+* Centos7 latest stable
+
+The repo is set up to compile the software in a "builder" container,
+then copy the built binaries into a "runtime" container free of development tools.
 
 Duo Authentication Proxy provides a local proxy service to enable
 on-premise integrations between VPNs, devices, applications,
@@ -92,6 +100,23 @@ Build all images:
     duoauthproxy-builder   ubuntu     1daefd2370bc    42 seconds ago   541.2 MB
 
 
+### Configure the authproxy
+
+The image assumes the configuration is at `/etc/duoauthproxy/authproxy.cfg`
+and provides a basic, default config file.
+To provide a custom configuration, create your config at that path on the
+docker host and run:
+
+    docker run -d -v /etc/duoauthproxy:/etc/duoauthproxy duoauthproxy
+
+Your custom config should contain a `[main]` section that includes:
+
+    [main]
+    log_stdout=true
+
+The above directive ensures that `docker logs <cid>` is meaningful.
+
+
 ### Test locally
 
 An acceptance test harness runs on
@@ -143,23 +168,6 @@ Run the test harness on a single image:
 Run the test harness on all images:
 
     script/test-all.sh
-
-
-### Configure the authproxy
-
-The image assumes the configuration is at `/etc/duoauthproxy/authproxy.cfg`
-and provides a basic, default config file.
-To provide a custom configuration, create your config at that path on the
-docker host and run:
-
-    docker run -d -v /etc/duoauthproxy:/etc/duoauthproxy duoauthproxy
-
-Your custom config should contain a `[main]` section that includes:
-
-    [main]
-    log_stdout=true
-
-The above directive ensures that `docker logs <cid>` is meaningful.
 
 
 Licenses
