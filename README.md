@@ -1,6 +1,10 @@
 Duo AuthProxy on Linux
 ======================
 
+Project URL: [https://github.com/jumanjihouse/docker-duoauthproxy](https://github.com/jumanjihouse/docker-duoauthproxy)
+<br />
+Docker hub: [https://registry.hub.docker.com/u/jumanjiman/duoauthproxy/](https://registry.hub.docker.com/u/jumanjiman/duoauthproxy/)
+
 Overview [![wercker status](https://app.wercker.com/status/29aaf67f4cb14dee1e8acdc1360e8f52/s/master "wercker status")](https://app.wercker.com/project/bykey/29aaf67f4cb14dee1e8acdc1360e8f52)
 --------
 
@@ -85,6 +89,9 @@ into the docker hub.
 
 The image assumes the configuration is at `/etc/duoauthproxy/authproxy.cfg`
 and provides a basic, default config file.
+Sample files for netscaler secondary authentication and systemd unit file
+are in the contrib directory of this git repo.
+
 To provide a custom configuration, create your config at that path on the
 docker host and run:
 

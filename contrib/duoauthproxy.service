@@ -1,0 +1,23 @@
+#
+# Sample unit file for systemd.
+# Copy this file to /etc/systemd/system/duoauthproxy.service
+#
+[Unit]
+Description=duoauthproxy
+After=docker.service
+Requires=docker.service
+
+[Service]
+ExecStartPre=/bin/bash -c '/usr/bin/docker inspect %n &> /dev/null && /usr/bin/docker rm %n || :'
+ExecStart=/usr/bin/docker run \
+  --name %n \
+  -p 1812:1812/udp \
+  -p 18120:18120/udp \
+  -v /etc/duoauthproxy:/etc/duoauthproxy \
+  jumanjiman/duoauthproxy:centos6
+ExecStop=/usr/bin/docker stop %n
+RestartSec=5s
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
