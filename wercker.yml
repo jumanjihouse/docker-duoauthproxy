@@ -15,3 +15,26 @@ build:
     - script:
         name: test all images
         code: script/test-all.sh
+    - zvelo/docker-save:
+        image: jumanjiman/duoauthproxy:centos6
+    - zvelo/docker-save:
+        image: jumanjiman/duoauthproxy:centos7
+    - zvelo/docker-save:
+        image: jumanjiman/duoauthproxy:ubuntu
+deploy:
+  steps:
+    - zvelo/docker-hub-push:
+        image: jumanjiman/duoauthproxy:centos6
+        email: ${email}
+        password: ${password}
+        username: jumanjiman
+    - zvelo/docker-hub-push:
+        image: jumanjiman/duoauthproxy:centos7
+        email: ${email}
+        password: ${password}
+        username: jumanjiman
+    - zvelo/docker-hub-push:
+        image: jumanjiman/duoauthproxy:ubuntu
+        email: ${email}
+        password: ${password}
+        username: jumanjiman

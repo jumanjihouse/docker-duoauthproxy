@@ -20,11 +20,6 @@ on-premise integrations between VPNs, devices, applications,
 and hosted Duo or Trustwave two-factor authentication (2fa).
 
 
-### Status
-
-:warning: This container is not yet ready for deployment.
-
-
 ### Network diagram
 
 ![Duo network diagram](https://www.duosecurity.com/static/images/docs/authproxy/radius-network-diagram.png)
@@ -75,6 +70,37 @@ Flow:
 How-to
 ------
 
+### Pull an already-built image
+
+These images are built as part of the test harness on wercker.
+If all tests pass on master branch, then the images are pushed
+into the docker hub.
+
+* Ubuntu latest stable: `docker pull jumanjiman/duoauthproxy:ubuntu`
+* Centos6 latest stable: `docker pull jumanjiman/duoauthproxy:centos6`
+* Centos7 latest stable: `docker pull jumanjiman/duoauthproxy:centos7`
+
+
+### Configure the authproxy
+
+The image assumes the configuration is at `/etc/duoauthproxy/authproxy.cfg`
+and provides a basic, default config file.
+To provide a custom configuration, create your config at that path on the
+docker host and run:
+
+    docker run -d -v /etc/duoauthproxy:/etc/duoauthproxy jumanjiman/duoauthproxy:centos6
+
+Your custom config should contain a `[main]` section that includes:
+
+    [main]
+    log_stdout=true
+
+The above directive ensures that `docker logs <cid>` is meaningful.
+
+See [https://www.duosecurity.com/docs/authproxy_reference]
+(https://www.duosecurity.com/docs/authproxy_reference) for all options.
+
+
 ### Build the docker image
 
 Build an image with your preferred userspace locally on a host with Docker:
@@ -98,23 +124,6 @@ Build all images:
     duoauthproxy-builder   centos6    91bda67b530a    9 minutes ago    440.2 MB
     duoauthproxy-builder   centos7    79db91e084e3    5 minutes ago    601 MB
     duoauthproxy-builder   ubuntu     1daefd2370bc    42 seconds ago   541.2 MB
-
-
-### Configure the authproxy
-
-The image assumes the configuration is at `/etc/duoauthproxy/authproxy.cfg`
-and provides a basic, default config file.
-To provide a custom configuration, create your config at that path on the
-docker host and run:
-
-    docker run -d -v /etc/duoauthproxy:/etc/duoauthproxy duoauthproxy
-
-Your custom config should contain a `[main]` section that includes:
-
-    [main]
-    log_stdout=true
-
-The above directive ensures that `docker logs <cid>` is meaningful.
 
 
 ### Test locally
