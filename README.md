@@ -8,6 +8,10 @@ Docker hub: [https://registry.hub.docker.com/u/jumanjiman/duoauthproxy/](https:/
 Overview [![wercker status](https://app.wercker.com/status/29aaf67f4cb14dee1e8acdc1360e8f52/s/master "wercker status")](https://app.wercker.com/project/bykey/29aaf67f4cb14dee1e8acdc1360e8f52)
 --------
 
+Duo Authentication Proxy provides a local proxy service to enable
+on-premise integrations between VPNs, devices, applications,
+and hosted Duo or Trustwave two-factor authentication (2fa).
+
 This repo provides a way to build Duo Authentication Proxy into
 a docker image and run it as a container.
 It provides containers based on your choice of:
@@ -18,10 +22,29 @@ It provides containers based on your choice of:
 
 The repo is set up to compile the software in a "builder" container,
 then copy the built binaries into a "runtime" container free of development tools.
+The build script in this git repo performs these steps:
 
-Duo Authentication Proxy provides a local proxy service to enable
-on-premise integrations between VPNs, devices, applications,
-and hosted Duo or Trustwave two-factor authentication (2fa).
+1. Build "duoauthproxy-common" image based on your preferred distro.
+   This image has a "duo" unprivileged user.
+   You can remove this image after the build finishes.
+
+2. Build "duoathproxy-builder" image that builds the authproxy.
+   The build script patches the authproxy install script to
+   **run as the duo unprivileged user** and install unattended.
+   You can remove this image after the build finishes.
+
+3. Build "duoauthproxy:${distro}" image that contains the runtime
+   without any development tools.
+   This is the image you use to run an authproxy container.
+
+Build integrity
+
+An unattended test harness runs the build script for each of
+the supported distributions and runs acceptance tests, including
+authentication against a test radius server with live Duo integration
+as a second factor. If all tests pass on master branch in the
+unattended test harness, it pushes the built images to the
+Docker hub.
 
 
 ### Network diagram
