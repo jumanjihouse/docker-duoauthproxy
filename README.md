@@ -126,6 +126,25 @@ Alternatively, you can run the container in detached mode from the CLI:
       jumanjiman/duoauthproxy:centos6
 
 
+### Forward logs to a central syslog server
+
+There are multiple approaches. An easy way is to use
+https://github.com/progrium/logspout to forward the logs.
+
+The `contrib` directory in this git repo provides a
+sample systemd unit file to run logspout.
+
+Edit the unit file to specify your server:
+
+    vim contrib/logspout.service
+
+Copy the modified unit file into place and activate:
+
+    sudo cp contrib/logspout.service /etc/systemd/system/
+    sudo systemctl enable logspout
+    sudo systemctl start logspout
+
+
 ### Build the docker image
 
 Build an image with your preferred userspace locally on a host with Docker:

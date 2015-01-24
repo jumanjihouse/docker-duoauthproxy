@@ -1,0 +1,20 @@
+# https://github.com/progrium/logspout
+Description=forward docker logs to central syslog
+After=docker.service
+Requires=docker.service
+
+[Service]
+ExecStartPre=/bin/bash -c '/usr/bin/docker inspect %n &> /dev/null && /usr/bin/docker rm %n || :'
+ExecStart=/usr/bin/docker run \
+  --name %n \
+  --hostname %H \
+  -p 8000:8000 \
+  -v /var/run/docker.sock:/tmp/docker.sock \
+  progrium/logspout \
+  syslog://yourserver.example.com:514
+ExecStop=/usr/bin/docker stop %n
+RestartSec=5s
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
