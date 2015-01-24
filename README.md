@@ -89,23 +89,41 @@ into the docker hub.
 
 The image assumes the configuration is at `/etc/duoauthproxy/authproxy.cfg`
 and provides a basic, default config file.
-Sample files for netscaler secondary authentication and systemd unit file
-are in the contrib directory of this git repo.
 
-To provide a custom configuration, create your config at that path on the
-docker host and run:
-
-    docker run -d -v /etc/duoauthproxy:/etc/duoauthproxy jumanjiman/duoauthproxy:centos6
-
-Your custom config should contain a `[main]` section that includes:
+You want `docker logs <cid>` to be meaningful, so
+your custom config should contain a `[main]` section that includes:
 
     [main]
     log_stdout=true
 
-The above directive ensures that `docker logs <cid>` is meaningful.
+The `contrib` directory in this git repo contains a sample config
+for an authproxy that provides secondary authentication to NetScaler.
 
 See [https://www.duosecurity.com/docs/authproxy_reference]
 (https://www.duosecurity.com/docs/authproxy_reference) for all options.
+
+
+### Run the authproxy
+
+Edit the sample config file or provide your own:
+
+    vim contrib/authproxy.cfg
+    sudo cp contrib/authproxy.cfg /etc/duoauthproxy/
+
+Copy the sample unit file into place and activate:
+
+    sudo cp contrib/duoauthproxy.service /etc/systemd/system/
+    sudo systemctl enable duoauthproxy
+    sudo systemctl start duoauthproxy
+
+Alternatively, you can run the container in detached mode from the CLI:
+
+    docker run -d \
+      --name duoauthproxy \
+      -p 1812:1812/udp \
+      -p 18120:18120/udp \
+      -v /etc/duoauthproxy:/etc/duoauthproxy \
+      jumanjiman/duoauthproxy:centos6
 
 
 ### Build the docker image
