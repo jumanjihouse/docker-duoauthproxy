@@ -16,9 +16,13 @@ This repo provides a way to build Duo Authentication Proxy into
 a docker image and run it as a container.
 It provides containers based on your choice of:
 
-* Ubuntu latest stable
-* Centos6 latest stable
-* Centos7 latest stable
+| Image name                         |    Image size |
+|:---------------------------------- | -------------:|
+| jumanjiman/duoauthproxy:centos6    |        409 MB |
+| jumanjiman/duoauthproxy:centos7    |        422 MB |
+| jumanjiman/duoauthproxy:ubuntu     |        307 MB |
+
+*Image size is approximate as of the last time I checked.*
 
 The repo is set up to compile the software in a "builder" container,
 then copy the built binaries into a "runtime" container free of development tools.
@@ -184,13 +188,7 @@ Run a container with bash from the built image:
 
 Build all images:
 
-    $ script/build-all.sh
-    duoauthproxy           centos6    f4929afc3b75    8 minutes ago    278.5 MB
-    duoauthproxy           centos7    ebc5592683ca    5 minutes ago    419.4 MB
-    duoauthproxy           ubuntu     8e6495e7b9b8    3 seconds ago    281.8 MB
-    duoauthproxy-builder   centos6    91bda67b530a    9 minutes ago    440.2 MB
-    duoauthproxy-builder   centos7    79db91e084e3    5 minutes ago    601 MB
-    duoauthproxy-builder   ubuntu     1daefd2370bc    42 seconds ago   541.2 MB
+    script/build-all.sh
 
 
 ### Test locally
