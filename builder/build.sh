@@ -13,6 +13,20 @@ if [[ $ID =~ ubuntu ]]; then
   apt-get update
   apt-get -q -y install $dev_tools
   apt-get clean
+elif [[ $ID =~ alpine ]]; then
+  dev_tools="
+    gcc
+    gmp-dev
+    libc-dev
+    libgcc
+    make
+    openssl-dev
+    patch
+    py-openssl
+    py-setuptools
+    python-dev
+  "
+  apk-install $dev_tools
 else
   # Assume centos or similar.
   dev_tools="

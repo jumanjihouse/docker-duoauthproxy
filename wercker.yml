@@ -21,6 +21,8 @@ build:
         image: jumanjiman/duoauthproxy:centos7
     - zvelo/docker-save:
         image: jumanjiman/duoauthproxy:ubuntu
+    - zvelo/docker-save:
+        image: jumanjiman/duoauthproxy:alpine
 deploy:
   steps:
     - zvelo/docker-hub-push:
@@ -35,6 +37,11 @@ deploy:
         username: jumanjiman
     - zvelo/docker-hub-push:
         image: jumanjiman/duoauthproxy:ubuntu
+        email: ${email}
+        password: ${password}
+        username: jumanjiman
+    - zvelo/docker-hub-push:
+        image: jumanjiman/duoauthproxy:alpine
         email: ${email}
         password: ${password}
         username: jumanjiman

@@ -18,6 +18,7 @@ It provides containers based on your choice of:
 
 | Image name                         |    Image size |
 |:---------------------------------- | -------------:|
+| jumanjiman/duoauthproxy:alpine     |         83 MB |
 | jumanjiman/duoauthproxy:centos6    |        409 MB |
 | jumanjiman/duoauthproxy:centos7    |        422 MB |
 | jumanjiman/duoauthproxy:ubuntu     |        307 MB |
@@ -107,6 +108,7 @@ These images are built as part of the test harness on wercker.
 If all tests pass on master branch, then the images are pushed
 into the docker hub.
 
+* Alpine latest stable: `docker pull jumanjiman/duoauthproxy:alpine`
 * Ubuntu latest stable: `docker pull jumanjiman/duoauthproxy:ubuntu`
 * Centos6 latest stable: `docker pull jumanjiman/duoauthproxy:centos6`
 * Centos7 latest stable: `docker pull jumanjiman/duoauthproxy:centos7`
