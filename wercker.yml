@@ -1,8 +1,9 @@
 box: wercker-labs/docker
 build:
   steps:
-    - install-packages:
-        packages: lxc-docker=1.4.1
+    - script:
+        name: install docker
+        code: curl -sSL https://get.docker.com/ubuntu/ | sudo sh
     - script:
         name: print system-wide docker info
         code: |
