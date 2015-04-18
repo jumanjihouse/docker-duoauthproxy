@@ -9,14 +9,10 @@ runtime_tag="duoauthproxy:${base_distro}"
 hub_tag="jumanjiman/${runtime_tag}"
 
 # We need radclient for testing.
-smitty pushd radclient
-smitty docker build --rm -t radclient .
-smitty popd
+smitty docker build --rm -t radclient radclient/
 
 # We need radiusd for testing.
-smitty pushd radiusd
-smitty docker build --rm -t radiusd .
-smitty popd
+smitty docker build --rm -t radiusd radiusd/
 
 smitty pushd $base_distro
 smitty docker build --rm -t $common_tag .
