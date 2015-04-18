@@ -4,6 +4,9 @@ Duo AuthProxy on Linux
 Project URL: [https://github.com/jumanjihouse/docker-duoauthproxy](https://github.com/jumanjihouse/docker-duoauthproxy)
 <br />
 Docker hub: [https://registry.hub.docker.com/u/jumanjiman/duoauthproxy/](https://registry.hub.docker.com/u/jumanjiman/duoauthproxy/)
+<br />
+Current version: Duo Authproxy 2.4.11
+([release notes](https://www.duosecurity.com/docs/authproxy-notes))
 
 Overview [![wercker status](https://app.wercker.com/status/29aaf67f4cb14dee1e8acdc1360e8f52/s/master "wercker status")](https://app.wercker.com/project/bykey/29aaf67f4cb14dee1e8acdc1360e8f52)
 --------
@@ -263,22 +266,6 @@ Get a list of licenses for third-party components within the images:
 
     dir='/root/duoauthproxy-*-src'
     docker run --rm -it --entrypoint=/bin/bash duoauthproxy-builder -c "find $dir -iregex '.*license.*'"
-
-At the time this document is created, the above commands shows:
-
-    duoauthproxy-2.4.8-src/pkgs/Twisted-14.0.2/LICENSE
-    duoauthproxy-2.4.8-src/pkgs/netaddr-0.7.10/docs/source/license.rst
-    duoauthproxy-2.4.8-src/pkgs/netaddr-0.7.10/LICENSE
-    duoauthproxy-2.4.8-src/pkgs/pyOpenSSL-0.13.1/LICENSE
-    duoauthproxy-2.4.8-src/pkgs/six-1.3.0/LICENSE
-    duoauthproxy-2.4.8-src/pkgs/zope.interface-4.0.5/LICENSE.txt
-    duoauthproxy-2.4.8-src/pkgs/dpkt-1.7/LICENSE
-    duoauthproxy-2.4.8-src/pkgs/pycrypto-2.6/LEGAL/copy/LICENSE.libtom
-    duoauthproxy-2.4.8-src/pkgs/pycrypto-2.6/LEGAL/copy/LICENSE.orig
-    duoauthproxy-2.4.8-src/pkgs/pycrypto-2.6/LEGAL/copy/LICENSE.python-2.2
-    duoauthproxy-2.4.8-src/pkgs/virtualenv-1.9.1/LICENSE.txt
-    duoauthproxy-2.4.8-src/pkgs/pyparsing-1.5.7/LICENSE
-    duoauthproxy-2.4.8-src/pkgs/pyrad-2.0/LICENSE.txt
 
 
 Thanks
