@@ -15,10 +15,7 @@ git_dir=$(git rev-parse --show-toplevel)
 # Available userspace distros.
 distros="
 alpine
-centos6
-centos7
-ubuntu
 "
 
-# Build centos6 by default.
-base_distro=${1:-centos6}
+# Build alpine by default.
+base_distro=${1:-alpine}

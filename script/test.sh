@@ -71,7 +71,7 @@ stop_container duoauthproxy
 stop_container radiusd
 
 # Are we running the expected base distro?
-smitty docker run --rm --entrypoint /bin/bash duoauthproxy:${base_distro} -c "cat /etc/os-release || cat /etc/centos-release"
+smitty docker run --rm --entrypoint /bin/bash duoauthproxy:${base_distro} -c "cat /etc/os-release"
 
 # Start radiusd for test.
 # We use `-t' so that we can log to stdout for `docker logs'.

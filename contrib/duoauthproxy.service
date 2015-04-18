@@ -14,7 +14,7 @@ ExecStart=/usr/bin/docker run \
   -p 1812:1812/udp \
   -p 18120:18120/udp \
   -v /etc/duoauthproxy:/etc/duoauthproxy \
-  jumanjiman/duoauthproxy:centos6
+  jumanjiman/duoauthproxy:latest
 ExecStop=/usr/bin/docker stop %n
 RestartSec=5s
 Restart=always

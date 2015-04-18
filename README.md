@@ -8,7 +8,7 @@ Docker hub: [https://registry.hub.docker.com/u/jumanjiman/duoauthproxy/](https:/
 Current version: Duo Authproxy 2.4.11
 ([release notes](https://www.duosecurity.com/docs/authproxy-notes))
 
-Overview [![wercker status](https://app.wercker.com/status/29aaf67f4cb14dee1e8acdc1360e8f52/s/master "wercker status")](https://app.wercker.com/project/bykey/29aaf67f4cb14dee1e8acdc1360e8f52)
+Overview
 --------
 
 Duo Authentication Proxy provides a local proxy service to enable
@@ -17,35 +17,17 @@ and hosted Duo or Trustwave two-factor authentication (2fa).
 
 This repo provides a way to build Duo Authentication Proxy into
 a docker image and run it as a container.
-It provides containers based on your choice of:
 
-| Image name                         |    Image size |
-|:---------------------------------- | -------------:|
-| jumanjiman/duoauthproxy:alpine     |         83 MB |
-| jumanjiman/duoauthproxy:centos6    |        409 MB |
-| jumanjiman/duoauthproxy:centos7    |        422 MB |
-| jumanjiman/duoauthproxy:ubuntu     |        307 MB |
+:warning: This repo no longer supports Centos6, Centos7, or Ubuntu.
+<br />
+The last commit that supported these distros was
+[c12896f19a9ad458674a9c06aaf5850f945af894](https://github.com/jumanjihouse/docker-duoauthproxy/commit/c12896f19a9ad458674a9c06aaf5850f945af894).
 
-*Image size is approximate as of the last time I checked.*
+
+### Build integrity [![wercker status](https://app.wercker.com/status/29aaf67f4cb14dee1e8acdc1360e8f52/s/master "wercker status")](https://app.wercker.com/project/bykey/29aaf67f4cb14dee1e8acdc1360e8f52)
 
 The repo is set up to compile the software in a "builder" container,
 then copy the built binaries into a "runtime" container free of development tools.
-The build script in this git repo performs these steps:
-
-1. Build "duoauthproxy-common" image based on your preferred distro.
-   This image has a "duo" unprivileged user.
-   You can remove this image after the build finishes.
-
-2. Build "duoathproxy-builder" image that builds the authproxy.
-   The build script patches the authproxy install script to
-   **run as the duo unprivileged user** and install unattended.
-   You can remove this image after the build finishes.
-
-3. Build "duoauthproxy:${distro}" image that contains the runtime
-   without any development tools.
-   This is the image you use to run an authproxy container.
-
-Build integrity
 
 An unattended test harness runs the build script for each of
 the supported distributions and runs acceptance tests, including
@@ -108,13 +90,10 @@ How-to
 ### Pull an already-built image
 
 These images are built as part of the test harness on wercker.
-If all tests pass on master branch, then the images are pushed
+If all tests pass on master branch, then the image is pushed
 into the docker hub.
 
-* Alpine latest stable: `docker pull jumanjiman/duoauthproxy:alpine`
-* Ubuntu latest stable: `docker pull jumanjiman/duoauthproxy:ubuntu`
-* Centos6 latest stable: `docker pull jumanjiman/duoauthproxy:centos6`
-* Centos7 latest stable: `docker pull jumanjiman/duoauthproxy:centos7`
+    docker pull jumanjiman/duoauthproxy:latest
 
 
 ### Configure the authproxy
@@ -155,7 +134,7 @@ Alternatively, you can run the container in detached mode from the CLI:
       -p 1812:1812/udp \
       -p 18120:18120/udp \
       -v /etc/duoauthproxy:/etc/duoauthproxy \
-      jumanjiman/duoauthproxy:centos6
+      jumanjiman/duoauthproxy:latest
 
 
 ### Forward logs to a central syslog server
@@ -179,21 +158,13 @@ Copy the modified unit file into place and activate:
 
 ### Build the docker image
 
-Build an image with your preferred userspace locally on a host with Docker:
+Build an image locally on a host with Docker:
 
-    script/build.sh centos6
-    script/build.sh centos7
-    script/build.sh ubuntu
+    script/build.sh alpine
 
-Run a container with bash from the built image:
+Run a container interactively from the built image:
 
-    docker run --rm -it --entrypoint=/bin/bash duoauthproxy:centos6
-    docker run --rm -it --entrypoint=/bin/bash duoauthproxy:centos7
-    docker run --rm -it --entrypoint=/bin/bash duoauthproxy:ubuntu
-
-Build all images:
-
-    script/build-all.sh
+    docker run --rm -it --entrypoint sh duoauthproxy:alpine
 
 
 ### Test locally
@@ -240,13 +211,7 @@ The file holds keys for the integrations you created above.
 
 Run the test harness on a single image:
 
-    script/test.sh centos6
-    script/test.sh centos7
-    script/test.sh ubuntu
-
-Run the test harness on all images:
-
-    script/test-all.sh
+    script/test.sh alpine
 
 
 Licenses
@@ -260,12 +225,12 @@ within the built image.
 View the Duo end-user license agreement:
 
     eula='/opt/duoauthproxy/doc/eula-linux.txt'
-    docker run --rm -it --entrypoint=/bin/bash duoauthproxy -c "cat $eula"
+    docker run --rm -it --entrypoint sh duoauthproxy -c "cat $eula"
 
 Get a list of licenses for third-party components within the images:
 
     dir='/root/duoauthproxy-*-src'
-    docker run --rm -it --entrypoint=/bin/bash duoauthproxy-builder -c "find $dir -iregex '.*license.*'"
+    docker run --rm -it --entrypoint sh duoauthproxy-builder -c "find $dir -iregex '.*license.*'"
 
 
 Thanks
