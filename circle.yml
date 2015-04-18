@@ -18,3 +18,17 @@ test:
     - docker ps -a
   override:
     - script/test-all.sh
+
+# https://circleci.com/docs/configuration#deployment
+# https://circleci.com/docs/environment-variables
+deployment:
+  master:
+    branch: master
+    owner: jumanjihouse
+    commands:
+      # squid
+      - docker login -e ${mail} -u ${user} -p ${pass}
+      - docker tag jumanjiman/duoauthproxy:alpine jumanjiman/duoauthproxy:${CIRCLE_SHA1:0:7}
+      - docker push jumanjiman/duoauthproxy:${CIRCLE_SHA1:0:7}
+      - docker push jumanjiman/duoauthproxy:alpine
+      - docker logout

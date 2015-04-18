@@ -24,7 +24,7 @@ The last commit that supported these distros was
 [c12896f19a9ad458674a9c06aaf5850f945af894](https://github.com/jumanjihouse/docker-duoauthproxy/commit/c12896f19a9ad458674a9c06aaf5850f945af894).
 
 
-### Build integrity [![wercker status](https://app.wercker.com/status/29aaf67f4cb14dee1e8acdc1360e8f52/s/master "wercker status")](https://app.wercker.com/project/bykey/29aaf67f4cb14dee1e8acdc1360e8f52)
+### Build integrity [![Circle CI](https://circleci.com/gh/jumanjihouse/docker-duoauthproxy/tree/master.svg?style=svg)](https://circleci.com/gh/jumanjihouse/docker-duoauthproxy/tree/master)
 
 The repo is set up to compile the software in a "builder" container,
 then copy the built binaries into a "runtime" container free of development tools.
@@ -89,7 +89,7 @@ How-to
 
 ### Pull an already-built image
 
-These images are built as part of the test harness on wercker.
+These images are built as part of the test harness on CircleCI.
 If all tests pass on master branch, then the image is pushed
 into the docker hub.
 
@@ -170,9 +170,9 @@ Run a container interactively from the built image:
 ### Test locally
 
 An acceptance test harness runs on
-[wercker.com](https://app.wercker.com/#applications/54a04a9107fa3ea41500fd01)
+[circleci.com](https://circleci.com/gh/jumanjihouse/docker-duoauthproxy)
 for each pull request. You do not need to do anything other than open a PR
-in order to test changes on wercker.
+in order to test changes on CircleCI.
 
 As an alternative, you can run the acceptance test harness locally to verify operation.
 First, create a free personal account at https://signup.duosecurity.com/
