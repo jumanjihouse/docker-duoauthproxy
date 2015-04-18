@@ -1,7 +1,9 @@
-FROM centos:centos6
+FROM alpine:latest
 
-RUN yum -y install freeradius; yum clean all
-ADD users /etc/raddb/users
-ADD clients.conf /etc/raddb/clients.conf
+RUN apk add --update freeradius openssl && rm -f /var/cache/apk/* && \
+    /etc/raddb/certs/bootstrap && \
+    rm -f /etc/raddb/certs/bootstrap
+COPY users /etc/raddb/users
+COPY clients.conf /etc/raddb/clients.conf
 ENTRYPOINT ["/usr/sbin/radiusd"]
 CMD ["-f"]

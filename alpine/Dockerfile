@@ -1,4 +1,6 @@
-FROM gliderlabs/alpine
+FROM alpine:latest
 
-ONBUILD RUN apk update; apk upgrade; apk-install bash python
+ONBUILD RUN apk upgrade --update && \
+            apk add bash python && \
+            rm -f /var/cache/apk/*
 RUN adduser -D duo

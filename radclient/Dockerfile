@@ -1,5 +1,5 @@
-FROM centos:centos6
+FROM alpine:latest
 
-RUN yum -y install freeradius-utils; yum clean all
-ADD test.conf /root/test.conf
+RUN apk add --update freeradius-radclient && rm -f /var/cache/apk/*
+COPY test.conf /root/test.conf
 ENTRYPOINT ["radclient"]

@@ -26,7 +26,7 @@ elif [[ $ID =~ alpine ]]; then
     py-setuptools
     python-dev
   "
-  apk-install $dev_tools
+  apk add --update $dev_tools
 else
   # Assume centos or similar.
   dev_tools="

@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 #
 # ================================================================================
 # This script uses several containers:
@@ -49,12 +50,17 @@ start_authproxy() {
   api_host=$1
   ikey=$2
   skey=$3
-  cp -f runtime/authproxy.cfg /tmp/
-  sed -i "s/RADIUSD_IP/${radiusd_ip}/g" /tmp/authproxy.cfg
-  sed -i "s/API_HOST/${api_host}/g" /tmp/authproxy.cfg
-  sed -i "s/IKEY/${ikey}/g" /tmp/authproxy.cfg
-  sed -i "s/SKEY/${skey}/g" /tmp/authproxy.cfg
-  smitty docker run -d --name duoauthproxy -v /tmp:/etc/duoauthproxy duoauthproxy:${base_distro}
+
+  # Create a data container.
+  docker rm -f authproxy-config &> /dev/null || :
+  docker run --name authproxy-config -v /etc/duoauthproxy --entrypoint=true duoauthproxy:${base_distro}
+  docker run --volumes-from authproxy-config alpine:latest sed -i "s/RADIUSD_IP/${radiusd_ip}/g" /etc/duoauthproxy/authproxy.cfg
+  docker run --volumes-from authproxy-config alpine:latest sed -i "s/API_HOST/${api_host}/g" /etc/duoauthproxy/authproxy.cfg
+  docker run --volumes-from authproxy-config alpine:latest sed -i "s/IKEY/${ikey}/g" /etc/duoauthproxy/authproxy.cfg
+  docker run --volumes-from authproxy-config alpine:latest sed -i "s/SKEY/${skey}/g" /etc/duoauthproxy/authproxy.cfg
+
+  # Start duoauthproxy.
+  smitty docker run -d --name duoauthproxy --volumes-from authproxy-config duoauthproxy:${base_distro}
   check_init
 }
 
@@ -71,7 +77,7 @@ stop_container duoauthproxy
 stop_container radiusd
 
 # Are we running the expected base distro?
-smitty docker run --rm --entrypoint /bin/bash duoauthproxy:${base_distro} -c "cat /etc/os-release || cat /etc/centos-release"
+smitty docker run --entrypoint /bin/bash duoauthproxy:${base_distro} -c "cat /etc/os-release"
 
 # Start radiusd for test.
 # We use `-t' so that we can log to stdout for `docker logs'.
@@ -81,7 +87,7 @@ echo radiusd is running on ${radiusd_ip}
 
 # Check that we can connect to radiusd directly.
 # The client connection compensates for the time it takes radiusd to init.
-smitty docker run --rm -t radclient -f /root/test.conf ${radiusd_ip}:1812 auth testing123
+smitty docker run -t radclient -f /root/test.conf ${radiusd_ip}:1812 auth testing123
 
 # Do we see output from `docker logs radiusd'?
 smitty docker logs radiusd | tee /tmp/radiusd.log
