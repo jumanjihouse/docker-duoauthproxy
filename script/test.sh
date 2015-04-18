@@ -77,7 +77,7 @@ stop_container duoauthproxy
 stop_container radiusd
 
 # Are we running the expected base distro?
-smitty docker run --rm --entrypoint /bin/bash duoauthproxy:${base_distro} -c "cat /etc/os-release"
+smitty docker run --entrypoint /bin/bash duoauthproxy:${base_distro} -c "cat /etc/os-release"
 
 # Start radiusd for test.
 # We use `-t' so that we can log to stdout for `docker logs'.
@@ -87,7 +87,7 @@ echo radiusd is running on ${radiusd_ip}
 
 # Check that we can connect to radiusd directly.
 # The client connection compensates for the time it takes radiusd to init.
-smitty docker run --rm -t radclient -f /root/test.conf ${radiusd_ip}:1812 auth testing123
+smitty docker run -t radclient -f /root/test.conf ${radiusd_ip}:1812 auth testing123
 
 # Do we see output from `docker logs radiusd'?
 smitty docker logs radiusd | tee /tmp/radiusd.log
