@@ -24,7 +24,9 @@ smitty popd
 
 smitty pushd runtime
 smitty rm -fr duoauthproxy.tgz || :
-smitty docker run --rm -v $(pwd):/tmp $builder_tag bash -c "tar czf /tmp/duoauthproxy.tgz /opt/duoauthproxy"
+docker rm -f builder &> /dev/null || :
+smitty docker run --name builder $builder_tag bash -c "tar czf /tmp/duoauthproxy.tgz /opt/duoauthproxy"
+smitty docker cp builder:/tmp/duoauthproxy.tgz .
 smitty docker build --rm -t $runtime_tag .
 smitty docker tag -f $runtime_tag $hub_tag
 smitty popd
