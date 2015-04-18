@@ -3,7 +3,7 @@ FROM duoauthproxy-common
 ENV REFRESHED_AT 2015-Apr-16
 
 # Build and install authproxy.
-ADD install.patch /root/
+COPY install.patch /root/
 ADD https://dl.duosecurity.com/duoauthproxy-latest-src.tgz /root/
-ADD build.sh /root/
+COPY build.sh /root/
 RUN /root/build.sh
