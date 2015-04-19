@@ -4,5 +4,6 @@ FROM duoauthproxy-common
 ADD duoauthproxy.tgz /
 
 COPY authproxy.cfg /etc/duoauthproxy/authproxy.cfg
+USER duo
 ENTRYPOINT ["/opt/duoauthproxy/bin/authproxy"]
 CMD ["-c", "/etc/duoauthproxy/authproxy.cfg"]

@@ -9,12 +9,19 @@ Requires=docker.service
 
 [Service]
 ExecStartPre=/bin/bash -c '/usr/bin/docker inspect %n &> /dev/null && /usr/bin/docker rm %n || :'
+# Drop capabilities, then add back the minimum necessary to run.
+# We need some capabilities to avoid runtime failures:
+#   setgid: setup user setgroups operation not permitted
+#   setuid: setup user setuid operation not permitted
 ExecStart=/usr/bin/docker run \
   --name %n \
   -p 1812:1812/udp \
   -p 18120:18120/udp \
   -v /etc/duoauthproxy:/etc/duoauthproxy \
   --read-only \
+  --cap-drop=all \
+  --cap-add=setgid \
+  --cap-add=setuid \
   jumanjiman/duoauthproxy:latest
 ExecStop=/usr/bin/docker stop %n
 RestartSec=5s

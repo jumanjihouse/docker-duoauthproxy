@@ -59,7 +59,12 @@ start_authproxy() {
   docker run --volumes-from authproxy-config alpine:latest sed -i "s/SKEY/${skey}/g" /etc/duoauthproxy/authproxy.cfg
 
   # Start duoauthproxy.
-  smitty docker run -d --read-only --name duoauthproxy --volumes-from authproxy-config duoauthproxy:${base_distro}
+  caps="
+    --cap-drop=all
+    --cap-add=setgid
+    --cap-add=setuid
+  "
+  smitty docker run -d --read-only ${caps} --name duoauthproxy --volumes-from authproxy-config duoauthproxy:${base_distro}
   check_init
 }
 

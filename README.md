@@ -135,6 +135,9 @@ Alternatively, you can run the container in detached mode from the CLI:
       -p 18120:18120/udp \
       -v /etc/duoauthproxy:/etc/duoauthproxy \
       --read-only \
+      --cap-drop=all \
+      --cap-add=setgid \
+      --cap-add=setuid \
       jumanjiman/duoauthproxy:latest
 
 
