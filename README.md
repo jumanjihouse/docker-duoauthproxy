@@ -134,6 +134,7 @@ Alternatively, you can run the container in detached mode from the CLI:
       -p 1812:1812/udp \
       -p 18120:18120/udp \
       -v /etc/duoauthproxy:/etc/duoauthproxy \
+      --read-only \
       jumanjiman/duoauthproxy:latest
 
 
