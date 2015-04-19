@@ -67,7 +67,7 @@ attempt_proxy_auth() {
   # Do we expect to "Allow" or "Deny" access?
   expectation=$1
   ip=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' duoauthproxy)
-  smitty docker run --net=host --rm -t radclient -f /root/test.conf ${ip}:1812 auth foo | tee /tmp/auth.out
+  smitty docker run --net=host -t radclient -f /root/test.conf ${ip}:1812 auth foo | tee /tmp/auth.out
   grep "${expectation}ing unknown user" /tmp/auth.out &> /dev/null
 }
 
