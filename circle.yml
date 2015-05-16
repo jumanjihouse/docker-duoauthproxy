@@ -29,6 +29,8 @@ deployment:
       # squid
       - docker login -e ${mail} -u ${user} -p ${pass}
       - docker tag jumanjiman/duoauthproxy:alpine jumanjiman/duoauthproxy:${CIRCLE_SHA1:0:7}
+      - docker tag jumanjiman/duoauthproxy:alpine jumanjiman/duoauthproxy:latest
       - docker push jumanjiman/duoauthproxy:${CIRCLE_SHA1:0:7}
       - docker push jumanjiman/duoauthproxy:alpine
+      - docker push jumanjiman/duoauthproxy:latest
       - docker logout
