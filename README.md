@@ -8,6 +8,9 @@ Docker hub: [https://registry.hub.docker.com/u/jumanjiman/duoauthproxy/](https:/
 Current version: Duo Authproxy 2.4.11
 ([release notes](https://www.duosecurity.com/docs/authproxy-notes))
 
+[![](https://badge.imagelayers.io/jumanjiman/duoauthproxy.svg)](https://imagelayers.io/?images=jumanjiman/duoauthproxy:latest 'image size and layers')
+
+
 Overview
 --------
 
