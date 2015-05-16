@@ -18,11 +18,6 @@ and hosted Duo or Trustwave two-factor authentication (2fa).
 This repo provides a way to build Duo Authentication Proxy into
 a docker image and run it as a container.
 
-:warning: This repo no longer supports Centos6, Centos7, or Ubuntu.
-<br />
-The last commit that supported these distros was
-[c12896f19a9ad458674a9c06aaf5850f945af894](https://github.com/jumanjihouse/docker-duoauthproxy/commit/c12896f19a9ad458674a9c06aaf5850f945af894).
-
 
 ### Build integrity [![Circle CI](https://circleci.com/gh/jumanjihouse/docker-duoauthproxy/tree/master.svg?style=svg)](https://circleci.com/gh/jumanjihouse/docker-duoauthproxy/tree/master)
 
