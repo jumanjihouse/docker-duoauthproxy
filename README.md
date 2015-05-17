@@ -1,14 +1,15 @@
 Duo AuthProxy on Linux
 ======================
 
+[![](https://badge.imagelayers.io/jumanjiman/duoauthproxy.svg)](https://imagelayers.io/?images=jumanjiman/duoauthproxy:latest 'View image size and layers')&nbsp;
+[![Circle CI](https://circleci.com/gh/jumanjihouse/docker-duoauthproxy.png?circle-token=08f5a2b5348f48e4e629da800f3e0ad410025dca)](https://circleci.com/gh/jumanjihouse/docker-duoauthproxy/tree/master 'View CI builds')
+
 Project URL: [https://github.com/jumanjihouse/docker-duoauthproxy](https://github.com/jumanjihouse/docker-duoauthproxy)
 <br />
 Docker hub: [https://registry.hub.docker.com/u/jumanjiman/duoauthproxy/](https://registry.hub.docker.com/u/jumanjiman/duoauthproxy/)
 <br />
 Current version: Duo Authproxy 2.4.11
 ([release notes](https://www.duosecurity.com/docs/authproxy-notes))
-
-[![](https://badge.imagelayers.io/jumanjiman/duoauthproxy.svg)](https://imagelayers.io/?images=jumanjiman/duoauthproxy:latest 'image size and layers')
 
 
 Overview
@@ -22,7 +23,7 @@ This repo provides a way to build Duo Authentication Proxy into
 a docker image and run it as a container.
 
 
-### Build integrity [![Circle CI](https://circleci.com/gh/jumanjihouse/docker-duoauthproxy/tree/master.svg?style=svg)](https://circleci.com/gh/jumanjihouse/docker-duoauthproxy/tree/master)
+### Build integrity
 
 The repo is set up to compile the software in a "builder" container,
 then copy the built binaries into a "runtime" container free of development tools.
