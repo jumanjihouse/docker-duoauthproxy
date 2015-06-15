@@ -19,7 +19,7 @@ apk add --update $dev_tools
 
 # Build and install authproxy.
 cd /root
-tar xzf duoauthproxy-latest-src.tgz
+tar xzf duoauthproxy-*-src.tgz
 cd duoauthproxy*
 export PYTHON=$(which python)
 make

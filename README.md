@@ -94,6 +94,14 @@ into the docker hub.
 
     docker pull jumanjiman/duoauthproxy:latest
 
+The "latest" tag always points to the latest version.
+Additional tags include `<upstream_authproxy_version>-<git_hash>`
+to correlate any image to both the authproxy version and a
+git commit from this repo.
+
+We push the tags automatically from the test harness, and
+we occasionally delete old tags from the Docker hub by hand.
+
 
 ### Configure the authproxy
 

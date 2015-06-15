@@ -1,5 +1,9 @@
 # https://circleci.com/docs/docker
 machine:
+  environment:
+    # If you change this, you must also change builder/Dockerfile.
+    VERSION: 2.4.11
+    TAG: ${VERSION}-${CIRCLE_SHA1:0:7}
   pre:
     - sudo curl -L -o /usr/bin/docker 'http://s3-external-1.amazonaws.com/circle-downloads/docker-1.5.0-circleci'
     - sudo chmod 0755 /usr/bin/docker
@@ -28,9 +32,9 @@ deployment:
     commands:
       # squid
       - docker login -e ${mail} -u ${user} -p ${pass}
-      - docker tag jumanjiman/duoauthproxy:alpine jumanjiman/duoauthproxy:${CIRCLE_SHA1:0:7}
+      - docker tag jumanjiman/duoauthproxy:alpine jumanjiman/duoauthproxy:${TAG}
+      - docker push jumanjiman/duoauthproxy:${TAG}
       - docker tag jumanjiman/duoauthproxy:alpine jumanjiman/duoauthproxy:latest
-      - docker push jumanjiman/duoauthproxy:${CIRCLE_SHA1:0:7}
       - docker push jumanjiman/duoauthproxy:alpine
       - docker push jumanjiman/duoauthproxy:latest
       - docker logout
