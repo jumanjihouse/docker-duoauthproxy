@@ -1,4 +1,10 @@
-FROM alpine:3.2
+# alpine:3.2 ships with openssl 1.0.2
+#FROM alpine:3.2
+
+# We have to use an older openssl until DUO upgrades
+# their src tarball to use pyOpenSSL >= 0.14 as described at
+# https://github.com/pyca/pyopenssl/issues/276
+FROM alpine:3.1
 
 # If you change this, you must also change circle.yml.
 ENV VERSION 2.4.11
@@ -14,7 +20,6 @@ RUN apk upgrade --update --available && \
       make \
       openssl-dev \
       patch \
-      py-openssl \
       py-setuptools \
       python-dev \
     && rm -f /var/cache/apk/* && \
