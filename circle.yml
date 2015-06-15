@@ -15,13 +15,13 @@ dependencies:
     - docker info
     - docker version
     - ss -tulpn
-    - script/build-all.sh
+    - script/build.sh
 
 test:
   pre:
     - docker ps -a
   override:
-    - script/test-all.sh
+    - script/test.sh
 
 # https://circleci.com/docs/configuration#deployment
 # https://circleci.com/docs/environment-variables
@@ -30,11 +30,9 @@ deployment:
     branch: master
     owner: jumanjihouse
     commands:
-      # squid
       - docker login -e ${mail} -u ${user} -p ${pass}
-      - docker tag jumanjiman/duoauthproxy:alpine jumanjiman/duoauthproxy:${TAG}
+      - docker tag duoauthproxy jumanjiman/duoauthproxy:${TAG}
       - docker push jumanjiman/duoauthproxy:${TAG}
-      - docker tag jumanjiman/duoauthproxy:alpine jumanjiman/duoauthproxy:latest
-      - docker push jumanjiman/duoauthproxy:alpine
+      - docker tag duoauthproxy jumanjiman/duoauthproxy:latest
       - docker push jumanjiman/duoauthproxy:latest
       - docker logout

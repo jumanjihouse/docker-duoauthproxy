@@ -171,11 +171,11 @@ Copy the modified unit file into place and activate:
 
 Build an image locally on a host with Docker:
 
-    script/build.sh alpine
+    script/build.sh
 
 Run a container interactively from the built image:
 
-    docker run --rm -it --entrypoint sh duoauthproxy:alpine
+    docker run --rm -it --entrypoint sh duoauthproxy
 
 
 ### Test locally
@@ -222,7 +222,7 @@ The file holds keys for the integrations you created above.
 
 Run the test harness on a single image:
 
-    script/test.sh alpine
+    script/test.sh
 
 
 Licenses

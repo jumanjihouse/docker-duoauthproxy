@@ -11,11 +11,3 @@ err() {
 
 git_dir=$(git rev-parse --show-toplevel)
 [[ $(pwd) = $git_dir ]] && : || err Please run these scripts for the root of the repo
-
-# Available userspace distros.
-distros="
-alpine
-"
-
-# Build alpine by default.
-base_distro=${1:-alpine}

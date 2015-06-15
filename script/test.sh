@@ -52,7 +52,7 @@ start_authproxy() {
 
   # Create a data container.
   docker rm -f authproxy-config &> /dev/null || :
-  docker run --name authproxy-config -v /etc/duoauthproxy --entrypoint=true duoauthproxy:${base_distro}
+  docker run --name authproxy-config -v /etc/duoauthproxy --entrypoint=true duoauthproxy
   docker run --volumes-from authproxy-config alpine:latest sed -i "s/RADIUSD_IP/${radiusd_ip}/g" /etc/duoauthproxy/authproxy.cfg
   docker run --volumes-from authproxy-config alpine:latest sed -i "s/API_HOST/${api_host}/g" /etc/duoauthproxy/authproxy.cfg
   docker run --volumes-from authproxy-config alpine:latest sed -i "s/IKEY/${ikey}/g" /etc/duoauthproxy/authproxy.cfg
@@ -64,7 +64,7 @@ start_authproxy() {
     --cap-add=setgid
     --cap-add=setuid
   "
-  smitty docker run -d --read-only ${caps} --name duoauthproxy --volumes-from authproxy-config duoauthproxy:${base_distro}
+  smitty docker run -d --read-only ${caps} --name duoauthproxy --volumes-from authproxy-config duoauthproxy
   check_init
 }
 
@@ -86,7 +86,7 @@ stop_container duoauthproxy
 stop_container radiusd
 
 # Are we running the expected base distro?
-smitty docker run --entrypoint /bin/bash duoauthproxy:${base_distro} -c "cat /etc/os-release"
+smitty docker run --entrypoint /bin/bash duoauthproxy -c "cat /etc/os-release"
 
 # Start radiusd for test.
 # We use `-t' so that we can log to stdout for `docker logs'.
