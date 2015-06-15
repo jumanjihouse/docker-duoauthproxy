@@ -73,7 +73,12 @@ attempt_proxy_auth() {
   expectation=$1
   ip=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' duoauthproxy)
   smitty docker run --net=host -t radclient -f /root/test.conf ${ip}:1812 auth foo | tee /tmp/auth.out
-  grep "${expectation}ing unknown user" /tmp/auth.out &> /dev/null
+  if [ ${expectation} = Allow ]; then
+    grep 'Access-Accept' /tmp/auth.out &> /dev/null
+  else
+    grep 'Access-Reject' /tmp/auth.out &> /dev/null
+  fi
+  echo OK: result matched expectation ${expectation}
 }
 
 # Clean up from prior tests.
