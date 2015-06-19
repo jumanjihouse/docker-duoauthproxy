@@ -18,7 +18,7 @@ RUN apk upgrade --update --available && \
       libc-dev \
       libgcc \
       make \
-      openssl-dev \
+      openssl-dev=1.0.1o-r0 \
       patch \
       py-setuptools \
       python-dev \
