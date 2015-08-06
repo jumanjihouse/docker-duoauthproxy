@@ -89,8 +89,7 @@ stop_container radiusd
 smitty docker run --entrypoint /bin/bash duoauthproxy -c "cat /etc/os-release"
 
 # Start radiusd for test.
-# We use `-t' so that we can log to stdout for `docker logs'.
-smitty docker run -d -t --name radiusd radiusd -f -l /dev/stdout
+smitty docker run -d --name radiusd radiusd -f -l stdout
 radiusd_ip=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' radiusd)
 echo radiusd is running on ${radiusd_ip}
 
