@@ -1,0 +1,5 @@
+--- config.mk.orig      2015-08-14 20:57:54.406990011 -0400
++++ config.mk   2015-08-14 20:58:10.201216711 -0400
+@@ -18 +18 @@
+-PYOPENSSL_VER = pyOpenSSL-0.13.1
++PYOPENSSL_VER = pyopenssl-0.15.1
