@@ -29,6 +29,8 @@ a docker image and run it as a container.
 The repo is set up to compile the software in a "builder" container,
 then copy the built binaries into a "runtime" container free of development tools.
 
+![workflow](assets/docker_hub_workflow.png)
+
 An unattended test harness runs the build script for each of
 the supported distributions and runs acceptance tests, including
 authentication against a test radius server with live Duo integration
