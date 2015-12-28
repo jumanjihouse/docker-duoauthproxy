@@ -3,12 +3,6 @@ set -e
 
 . script/functions
 
-# We need radclient for testing.
-smitty docker build -t radclient radclient/
-
-# We need radiusd for testing.
-smitty docker build -t radiusd radiusd/
-
 # Build the authproxy.
 smitty docker build -t duoauthproxy-builder builder/
 

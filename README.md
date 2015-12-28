@@ -223,6 +223,11 @@ The file holds keys for the integrations you created above.
     IKEY_DENY=DIxxxxxxxxxxxxxxxxxx
     SKEY_DENY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
+    # Test harness uses a real radius server and client.
+    # See https://github.com/jumanjihouse/docker-radius
+    # Specify an optimistic or pessimistic tag here.
+    RADIUS_TAG="latest"
+
 Run the test harness on a single image:
 
     script/test.sh

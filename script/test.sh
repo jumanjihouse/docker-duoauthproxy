@@ -27,6 +27,23 @@ set -e
 . script/functions
 [[ -r environment ]] && . environment
 
+if [[ "x" = "x${RADIUS_TAG}" ]]; then
+  # Use optimistic version if...
+  # - user did not specify in `environment`, and
+  # - script is not running in circleci.
+  RADIUS_TAG="latest"
+fi
+
+# We need radclient for testing.
+smitty docker pull jumanjiman/radclient:${RADIUS_TAG}
+
+# We need radiusd for testing.
+smitty docker pull jumanjiman/radiusd:${RADIUS_TAG}
+
+# Re-tag the radius images to keep the test script simple.
+smitty docker tag -f jumanjiman/radclient:${RADIUS_TAG} radclient
+smitty docker tag -f jumanjiman/radiusd:${RADIUS_TAG} radiusd
+
 stop_container() {
   docker rm -f $1 &> /dev/null || :
 }

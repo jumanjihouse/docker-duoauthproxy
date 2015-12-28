@@ -1,2 +1,0 @@
-test    Cleartext-Password := "test"
-        Reply-Message = "Successful authentication"
