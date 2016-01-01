@@ -7,6 +7,7 @@ machine:
     # Tag for radiusd and radclient used in test harness.
     # For local testing, set this in `environment` as described in README.
     RADIUS_TAG: 20151228T0341-git-3ad3f17
+    BATS_VER: 0.4.0
   pre:
     - sudo curl -L -o /usr/bin/docker 'http://s3-external-1.amazonaws.com/circle-downloads/docker-1.9.1-circleci-cp-workaround'
     - sudo chmod 0755 /usr/bin/docker
@@ -14,6 +15,12 @@ machine:
     - docker
 
 dependencies:
+  cache_directories:
+    - "~/deps"
+  pre:
+    - if [[ ! -e ~/deps/bats_v${BATS_VER}.tar.gz ]]; then mkdir -p ~/deps; curl -sSL -o ~/deps/bats_v${BATS_VER}.tar.gz https://github.com/sstephenson/bats/archive/v${BATS_VER}.tar.gz; fi
+    - tar -xf ~/deps/bats_v${BATS_VER}.tar.gz
+    - sudo bats-${BATS_VER}/install.sh /usr/local
   override:
     - docker info
     - docker version

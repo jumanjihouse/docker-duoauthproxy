@@ -213,24 +213,32 @@ Create a local file at the root of the repo named `environment`.
 The file holds keys for the integrations you created above.
 
     # environment
-    API_HOST=api-xxxxxxxx.duosecurity.com
+    export API_HOST=api-xxxxxxxx.duosecurity.com
 
     # This integration allows users without 2fa.
-    IKEY_ALLOW=DIxxxxxxxxxxxxxxxxxx
-    SKEY_ALLOW=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    export IKEY_ALLOW=DIxxxxxxxxxxxxxxxxxx
+    export SKEY_ALLOW=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
     # This integration denies users without 2fa.
-    IKEY_DENY=DIxxxxxxxxxxxxxxxxxx
-    SKEY_DENY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    export IKEY_DENY=DIxxxxxxxxxxxxxxxxxx
+    export SKEY_DENY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
     # Test harness uses a real radius server and client.
     # See https://github.com/jumanjihouse/docker-radius
     # Specify an optimistic or pessimistic tag here.
-    RADIUS_TAG="latest"
+    export RADIUS_TAG="latest"
 
 Run the test harness on a single image:
 
     script/test.sh
+
+The test harness uses [BATS](https://github.com/sstephenson/bats).
+Output resembles:
+
+    ✓ radius auth via duo authproxy is allowed when 2fa succeeds
+    ✓ radius auth via duo authproxy is rejected when 2fa fails
+
+    2 tests, 0 failures
 
 
 Licenses
