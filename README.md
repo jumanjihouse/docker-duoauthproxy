@@ -238,9 +238,16 @@ Output resembles:
 
     ✓ radius auth via duo authproxy is allowed when 2fa succeeds
     ✓ radius auth via duo authproxy is rejected when 2fa fails
+    ✓ There are no suid files
+    ✓ duo user exists
+    ✓ duo user is denied interactive login
+    ✓ duo is the only user account
+    ✓ duo is the only user account
+    ✓ duo group exists
+    ✓ duo is the only group account
+    ✓ duo is the only group account
 
-    2 tests, 0 failures
-
+    10 tests, 0 failures
 
 Licenses
 --------

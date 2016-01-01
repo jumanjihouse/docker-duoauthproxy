@@ -1,7 +1,7 @@
 # BATS runs teardown() after every @test.
 teardown() {
-  docker rm -f duoauthproxy || :
-  docker rm -f radiusd || :
+  docker rm -f duoauthproxy &> /dev/null || :
+  docker rm -f radiusd &> /dev/null || :
 }
 
 # BATS runs setup() before every @test.

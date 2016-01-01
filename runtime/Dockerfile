@@ -3,7 +3,7 @@ FROM alpine:3.3
 RUN apk upgrade --update && \
     apk add bash python && \
     rm -f /var/cache/apk/* && \
-    adduser -D duo
+    adduser -D -s /sbin/nologin duo
 
 # Use ADD, not COPY, to keep image small.
 ADD duoauthproxy.tgz /
