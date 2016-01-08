@@ -2,7 +2,7 @@
 set -e
 set -x
 
-# https://www.duosecurity.com/docs/authproxy_reference#installation
+# https://duo.com/support/documentation/authproxy_reference#installation
 
 # Build and install authproxy.
 cd /root

@@ -11,7 +11,7 @@ Project URL: [https://github.com/jumanjihouse/docker-duoauthproxy](https://githu
 Docker hub: [https://registry.hub.docker.com/u/jumanjiman/duoauthproxy/](https://registry.hub.docker.com/u/jumanjiman/duoauthproxy/)
 <br />
 Current version: Duo Authproxy 2.4.14
-([release notes](https://www.duosecurity.com/docs/authproxy-notes))
+([release notes](https://duo.com/support/documentation/authproxy-notes))
 
 
 Overview
@@ -42,13 +42,13 @@ Docker hub.
 
 ### Network diagram
 
-![Duo network diagram](https://www.duosecurity.com/static/images/docs/authproxy/radius-network-diagram.png)
-<br />Source: [https://www.duosecurity.com/docs/radius](https://www.duosecurity.com/docs/radius)
+![Duo network diagram](https://duo.com/assets/img/documentation/authproxy/radius-network-diagram.png)
+<br />Source: [https://duo.com/support/documentation/radius](https://duo.com/support/documentation/radius)
 
 Actors:
 
 * *Application or Service* is any RADIUS **client**, such as Citrix Netscaler,
-  Juniper SSL VPN, Cisco ASA, f5, OpenVPN, or [others](https://www.duosecurity.com/docs).
+  Juniper SSL VPN, Cisco ASA, f5, OpenVPN, or [others](https://duo.com/support/documentation).
 
 * *Authentication Proxy* is the container described by this repo.
   - It acts as a RADIUS **server** for the application or service.
@@ -81,9 +81,9 @@ Flow:
 
 ### References
 
-* [Duo Authentication Proxy](https://www.duosecurity.com/docs/authproxy_reference)
-* [2fa on Citrix Netscaler via the Duo AuthProxy](https://www.duosecurity.com/docs/citrix_netscaler)
-* [Duo 2fa integrations](https://www.duosecurity.com/docs)
+* [Duo Authentication Proxy](https://duo.com/support/documentation/authproxy_reference)
+* [2fa on Citrix Netscaler via the Duo AuthProxy](https://duo.com/support/documentation/citrix_netscaler)
+* [Duo 2fa integrations](https://duo.com/support/documentation)
 * [Trustwave managed 2fa](http://www.trustwave.com/Services/Managed-Security/Managed-Two-Factor-Authentication/)
 
 
@@ -121,8 +121,8 @@ your custom config should contain a `[main]` section that includes:
 The `contrib` directory in this git repo contains a sample config
 for an authproxy that provides secondary authentication to NetScaler.
 
-See [https://www.duosecurity.com/docs/authproxy_reference]
-(https://www.duosecurity.com/docs/authproxy_reference) for all options.
+See [https://duo.com/support/documentation/authproxy_reference]
+(https://duo.com/support/documentation/authproxy_reference) for all options.
 
 
 ### Run the authproxy
