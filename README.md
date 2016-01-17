@@ -246,8 +246,9 @@ Output resembles:
     ✓ duo group exists
     ✓ duo is the only group account
     ✓ duo is the only group account
+    ✓ bash is not installed
 
-    10 tests, 0 failures
+    11 tests, 0 failures
 
 Licenses
 --------

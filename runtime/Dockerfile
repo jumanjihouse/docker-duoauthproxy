@@ -1,7 +1,7 @@
 FROM alpine:3.3
 
 RUN apk upgrade --update && \
-    apk add bash python && \
+    apk add python && \
     rm -f /var/cache/apk/* && \
     adduser -D -s /sbin/nologin duo
 

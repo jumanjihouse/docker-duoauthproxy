@@ -43,3 +43,8 @@
   groups=$(docker run --rm --entrypoint getent duoauthproxy group | wc -l)
   [[ ${groups} -eq 1 ]]
 }
+
+@test "bash is not installed" {
+  run docker run --rm --entrypoint ls duoauthproxy /bin/bash
+  [[ ${status} -ne 0 ]]
+}
