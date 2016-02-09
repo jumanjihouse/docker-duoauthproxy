@@ -10,7 +10,7 @@ Project URL: [https://github.com/jumanjihouse/docker-duoauthproxy](https://githu
 <br />
 Docker hub: [https://registry.hub.docker.com/u/jumanjiman/duoauthproxy/](https://registry.hub.docker.com/u/jumanjiman/duoauthproxy/)
 <br />
-Current version: Duo Authproxy 2.4.14
+Current version: Duo Authproxy 2.4.14.1
 ([release notes](https://duo.com/support/documentation/authproxy-notes))
 
 

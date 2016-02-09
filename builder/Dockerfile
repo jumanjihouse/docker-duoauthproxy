@@ -4,7 +4,7 @@
 FROM alpine:3.3
 
 # If you change this, you must also change circle.yml.
-ENV VERSION 2.4.14
+ENV VERSION 2.4.14.1
 
 RUN apk upgrade --update --available && \
     apk add \
