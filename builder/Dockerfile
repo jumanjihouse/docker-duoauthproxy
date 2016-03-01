@@ -7,6 +7,9 @@ FROM alpine:3.3
 ENV VERSION 2.4.14.1
 
 RUN apk upgrade --update --available && \
+    apk add --no-cache -X http://dl-4.alpinelinux.org/alpine/edge/main \
+      'openssl-dev>=1.0.2g-r0' \
+      && \
     apk add \
       bash \
       curl \
@@ -17,7 +20,6 @@ RUN apk upgrade --update --available && \
       libffi-dev \
       libgcc \
       make \
-      openssl-dev=1.0.2f-r0 \
       patch \
       py-setuptools \
       python-dev \
