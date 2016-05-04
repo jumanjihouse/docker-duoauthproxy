@@ -8,10 +8,14 @@ RUN apk upgrade --update && \
 # Use ADD, not COPY, to keep image small.
 ADD duoauthproxy.tgz /
 
+COPY entrypoint.py /
+COPY authproxy.cfg /etc/duoauthproxy/authproxy.cfg
+RUN chown duo /etc/duoauthproxy/authproxy.cfg
+
 COPY harden.sh /usr/sbin/harden.sh
 RUN /usr/sbin/harden.sh
 
-COPY authproxy.cfg /etc/duoauthproxy/authproxy.cfg
+ENV PATH /opt/duoauthproxy/bin:$PATH
 USER duo
-ENTRYPOINT ["/opt/duoauthproxy/bin/authproxy"]
-CMD ["-c", "/etc/duoauthproxy/authproxy.cfg"]
+ENTRYPOINT ["/entrypoint.py"]
+CMD ["authproxy", "-c", "/etc/duoauthproxy/authproxy.cfg"]
