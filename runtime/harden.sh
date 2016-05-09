@@ -38,9 +38,6 @@ sysdirs="
 find $sysdirs -xdev -type d -perm +0002 -exec chmod o-w {} +
 find $sysdirs -xdev -type f -perm +0002 -exec chmod o-w {} +
 
-# Remove apk configs.
-find $sysdirs -xdev -regex '.*apk.*' -exec rm -fr {} +
-
 # Remove crufty...
 #   /etc/shadow-
 #   /etc/passwd-
@@ -54,18 +51,6 @@ find $sysdirs -xdev -type d \
 
 # Remove all suid files.
 find $sysdirs -xdev -type f -a -perm +4000 -delete
-
-# Remove other programs that could be dangerous.
-find $sysdirs -xdev \( \
-  -name hexdump -o \
-  -name chgrp -o \
-  -name chmod -o \
-  -name chown -o \
-  -name ln -o \
-  -name od -o \
-  -name strings -o \
-  -name su \
-  \) -delete
 
 # Remove init scripts since we do not use them.
 rm -fr /etc/init.d

@@ -48,3 +48,23 @@
   run docker run --rm --entrypoint ls duoauthproxy /bin/bash
   [[ ${status} -ne 0 ]]
 }
+
+@test "chown is available" {
+  run docker run --rm --entrypoint chown duoauthproxy -h
+  [[ ${output} =~ "Usage: chown" ]]
+}
+
+@test "chgrp is available" {
+  run docker run --rm --entrypoint chgrp duoauthproxy -h
+  [[ ${output} =~ "Usage: chgrp" ]]
+}
+
+@test "ln is available" {
+  run docker run --rm --entrypoint sh duoauthproxy -c "command -v ln"
+  [[ ${status} -eq 0 ]]
+}
+
+@test "chmod is available" {
+  run docker run --rm --entrypoint sh duoauthproxy -c "command -v chmod"
+  [[ ${status} -eq 0 ]]
+}
