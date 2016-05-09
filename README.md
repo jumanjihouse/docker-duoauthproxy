@@ -247,8 +247,13 @@ Output resembles:
     ✓ duo is the only group account
     ✓ duo is the only group account
     ✓ bash is not installed
+    ✓ chown is available
+    ✓ chgrp is available
+    ✓ ln is available
+    ✓ chmod is available
 
-    11 tests, 0 failures
+    15 tests, 0 failures
+
 
 Licenses
 --------
