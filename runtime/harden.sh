@@ -38,9 +38,6 @@ sysdirs="
 find $sysdirs -xdev -type d -perm +0002 -exec chmod o-w {} +
 find $sysdirs -xdev -type f -perm +0002 -exec chmod o-w {} +
 
-# Remove apk configs.
-find $sysdirs -xdev -regex '.*apk.*' -exec rm -fr {} +
-
 # Remove crufty...
 #   /etc/shadow-
 #   /etc/passwd-
