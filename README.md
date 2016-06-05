@@ -1,8 +1,7 @@
 Duo AuthProxy on Linux
 ======================
 
-[![Image Size](https://img.shields.io/imagelayers/image-size/jumanjiman/duoauthproxy/latest.svg)](https://imagelayers.io/?images=jumanjiman/duoauthproxy:latest 'View image size and layers')&nbsp;
-[![Image Layers](https://img.shields.io/imagelayers/layers/jumanjiman/duoauthproxy/latest.svg)](https://imagelayers.io/?images=jumanjiman/duoauthproxy:latest 'View image size and layers')&nbsp;
+[![](https://imagelayers.io/badge/jumanjiman/duoauthproxy:latest.svg)](https://imagelayers.io/?images=jumanjiman/duoauthproxy:latest 'View on imagelayers.io')&nbsp;
 [![Docker Registry](https://img.shields.io/docker/pulls/jumanjiman/duoauthproxy.svg)](https://registry.hub.docker.com/u/jumanjiman/duoauthproxy)&nbsp;
 [![Circle CI](https://circleci.com/gh/jumanjihouse/docker-duoauthproxy.png?circle-token=08f5a2b5348f48e4e629da800f3e0ad410025dca)](https://circleci.com/gh/jumanjihouse/docker-duoauthproxy/tree/master 'View CI builds')
 
