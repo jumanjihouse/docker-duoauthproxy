@@ -1,7 +1,7 @@
 # Note: We have to patch DUO config.mk and update
 # their src tarball to use pyOpenSSL >= 0.14 as described at
 # https://github.com/pyca/pyopenssl/issues/276
-FROM alpine:3.3
+FROM alpine:3.4
 
 # If you change this, you must also change circle.yml.
 ENV VERSION 2.4.17
