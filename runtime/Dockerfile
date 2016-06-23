@@ -1,5 +1,18 @@
 FROM alpine:3.4
 
+ARG BUILD_DATE
+ARG VCS_REF
+ARG VERSION
+
+LABEL \
+    io.github.jumanjiman.version=$VERSION \
+    io.github.jumanjiman.build-date=$BUILD_DATE \
+    io.github.jumanjiman.vcs-ref=$VCS_REF \
+    io.github.jumanjiman.license="MIT" \
+    io.github.jumanjiman.docker.dockerfile="/runtime/Dockerfile" \
+    io.github.jumanjiman.vcs-type="Git" \
+    io.github.jumanjiman.vcs-url="https://github.com/jumanjihouse/docker-duoauthproxy.git"
+
 RUN apk upgrade --update && \
     apk add python && \
     rm -f /var/cache/apk/* && \
