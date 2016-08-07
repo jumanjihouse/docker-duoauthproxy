@@ -206,7 +206,7 @@ View the Duo end-user license agreement:
 Get a list of licenses for third-party components within the images:
 
     dir='/root/duoauthproxy-*-src'
-    docker run --rm -it --entrypoint sh duoauthproxy-builder -c "find $dir -iregex '.*license.*'"
+    docker run --rm -it --entrypoint sh duoauthproxy-builder -c "find $dir -iname '*license*'"
 
 
 Thanks

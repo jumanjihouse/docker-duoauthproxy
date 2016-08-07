@@ -33,6 +33,7 @@ test:
   pre:
     - docker ps -a
   override:
+    - script/licenses.sh
     - script/test.sh
 
 # https://circleci.com/docs/configuration#deployment
