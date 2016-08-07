@@ -192,7 +192,7 @@ See [TESTING.md](TESTING.md) in this git repo.
 Licenses
 --------
 
-All files in this repo are subject to LICENSE (also in this repo).
+All files in this repo are subject to [LICENSE](LICENSE) (also in this repo).
 
 Your usage of the built docker image is subject to the terms
 within the built image.
