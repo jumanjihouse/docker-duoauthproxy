@@ -23,6 +23,7 @@ RUN apk upgrade --update --available && \
       patch \
       py-setuptools \
       python-dev \
+      tar \
     && rm -f /var/cache/apk/* && \
     adduser -D duo
 
