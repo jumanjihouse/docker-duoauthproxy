@@ -1,4 +1,4 @@
-# https://github.com/progrium/logspout
+# https://github.com/gliderlabs/logspout
 Description=forward docker logs to central syslog
 After=docker.service
 Requires=docker.service

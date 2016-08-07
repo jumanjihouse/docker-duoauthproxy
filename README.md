@@ -73,7 +73,8 @@ Flow:
 4. If step 3 is successful, AuthProxy establishes a single HTTPS connection
    to DUO hosted service to validate second authentication factor with user.
 
-5. User provides the second authentication factor, either *approve* or *deny*.
+5. Duo independently confirms the user second authentication factor,
+   either *approve* or *deny*.
 
 6. DUO terminates the HTTPS connection established by AuthProxy with pass/fail,
    and AuthProxy returns the pass/fail to Application.
@@ -157,7 +158,7 @@ Alternatively, you can run the container in detached mode from the CLI:
 ### Forward logs to a central syslog server
 
 There are multiple approaches. An easy way is to use
-https://github.com/progrium/logspout to forward the logs.
+https://github.com/gliderlabs/logspout to forward the logs.
 
 The `contrib` directory in this git repo provides a
 sample systemd unit file to run logspout.
