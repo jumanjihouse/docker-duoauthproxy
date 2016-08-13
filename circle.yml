@@ -49,3 +49,4 @@ deployment:
       - docker tag duoauthproxy jumanjiman/duoauthproxy:latest
       - docker push jumanjiman/duoauthproxy:latest
       - docker logout
+      - curl -X POST 'https://hooks.microbadger.com/images/jumanjiman/duoauthproxy/a6qK4f-H4zzOMK1R2wA_Oovckew='

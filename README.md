@@ -1,13 +1,16 @@
 Duo AuthProxy on Linux
 ======================
 
-[![](https://imagelayers.io/badge/jumanjiman/duoauthproxy:latest.svg)](https://imagelayers.io/?images=jumanjiman/duoauthproxy:latest 'View on imagelayers.io')&nbsp;
+[![Version](https://images.microbadger.com/badges/version/jumanjiman/duoauthproxy.svg)](http://microbadger.com/images/jumanjiman/duoauthproxy "View on microbadger.com")&nbsp;
+[![Download size](https://images.microbadger.com/badges/image/jumanjiman/duoauthproxy.svg)](http://microbadger.com/images/jumanjiman/duoauthproxy "View on microbadger.com")&nbsp;
 [![Docker Registry](https://img.shields.io/docker/pulls/jumanjiman/duoauthproxy.svg)](https://registry.hub.docker.com/u/jumanjiman/duoauthproxy)&nbsp;
 [![Circle CI](https://circleci.com/gh/jumanjihouse/docker-duoauthproxy.png?circle-token=08f5a2b5348f48e4e629da800f3e0ad410025dca)](https://circleci.com/gh/jumanjihouse/docker-duoauthproxy/tree/master 'View CI builds')
 
 Project URL: [https://github.com/jumanjihouse/docker-duoauthproxy](https://github.com/jumanjihouse/docker-duoauthproxy)
 <br />
 Docker hub: [https://registry.hub.docker.com/u/jumanjiman/duoauthproxy/](https://registry.hub.docker.com/u/jumanjiman/duoauthproxy/)
+<br />
+Image metadata: [https://microbadger.com/#/images/jumanjiman/duoauthproxy](https://microbadger.com/#/images/jumanjiman/duoauthproxy)
 <br />
 Current version: Duo Authproxy 2.4.17
 ([release notes](https://duo.com/support/documentation/authproxy-notes))
