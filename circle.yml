@@ -8,7 +8,7 @@ machine:
     TAG: ${VERSION}-${BUILD_DATE}-git-${VCS_REF}
     # Tag for radiusd and radclient used in test harness.
     # For local testing, set this in `environment` as described in README.
-    RADIUS_TAG: 20160605T1955-git-e879741
+    RADIUS_TAG: 3.0.11-r2-20160814T2159-git-b902eaa
     BATS_VER: 0.4.0
   pre:
     - sudo curl -L -o /usr/bin/docker 'http://s3-external-1.amazonaws.com/circle-downloads/docker-1.9.1-circleci-cp-workaround'
