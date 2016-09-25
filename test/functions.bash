@@ -20,11 +20,11 @@ start_authproxy() {
   docker run -d --read-only ${caps} --name duoauthproxy --volumes-from authproxy-config duoauthproxy
 
   max_sleep=5
+  rc=1
   while [[ $max_sleep -gt 0 ]]; do
     max_sleep=$(( $max_sleep - 1 ))
     sleep 1
-    docker logs duoauthproxy | grep -ohi 'init complete'
-    rc=$?
+    docker logs duoauthproxy | grep -ohi 'init complete' && rc=0
     [[ $rc -eq 0 ]] && break
   done
   return $rc
