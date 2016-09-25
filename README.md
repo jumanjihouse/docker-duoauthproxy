@@ -3,7 +3,7 @@ Duo AuthProxy on Linux
 
 [![Version](https://images.microbadger.com/badges/version/jumanjiman/duoauthproxy.svg)](http://microbadger.com/images/jumanjiman/duoauthproxy "View on microbadger.com")&nbsp;
 [![Download size](https://images.microbadger.com/badges/image/jumanjiman/duoauthproxy.svg)](http://microbadger.com/images/jumanjiman/duoauthproxy "View on microbadger.com")&nbsp;
-[![Docker Registry](https://img.shields.io/docker/pulls/jumanjiman/duoauthproxy.svg)](https://registry.hub.docker.com/u/jumanjiman/duoauthproxy)&nbsp;
+[![Docker Registry](https://img.shields.io/docker/pulls/jumanjiman/duoauthproxy.svg)](https://hub.docker.com/r/jumanjiman/duoauthproxy/)&nbsp;
 [![Circle CI](https://circleci.com/gh/jumanjihouse/docker-duoauthproxy.png?circle-token=08f5a2b5348f48e4e629da800f3e0ad410025dca)](https://circleci.com/gh/jumanjihouse/docker-duoauthproxy/tree/master 'View CI builds')
 
 Project URL: [https://github.com/jumanjihouse/docker-duoauthproxy](https://github.com/jumanjihouse/docker-duoauthproxy)
