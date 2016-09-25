@@ -5,11 +5,11 @@ start_authproxy() {
 
   # Create a data container.
   docker rm -f authproxy-config &> /dev/null || :
-  docker run --name authproxy-config -v /etc/duoauthproxy --entrypoint=true duoauthproxy
-  docker run --volumes-from authproxy-config alpine:3.3 sed -i "s/RADIUSD_IP/${radiusd_ip}/g" /etc/duoauthproxy/authproxy.cfg
-  docker run --volumes-from authproxy-config alpine:3.3 sed -i "s/API_HOST/${api_host}/g" /etc/duoauthproxy/authproxy.cfg
-  docker run --volumes-from authproxy-config alpine:3.3 sed -i "s/IKEY/${ikey}/g" /etc/duoauthproxy/authproxy.cfg
-  docker run --volumes-from authproxy-config alpine:3.3 sed -i "s/SKEY/${skey}/g" /etc/duoauthproxy/authproxy.cfg
+  docker create --name authproxy-config -v /etc/duoauthproxy --entrypoint=true duoauthproxy
+  docker run --rm --volumes-from authproxy-config alpine:3.3 sed -i "s/RADIUSD_IP/${radiusd_ip}/g" /etc/duoauthproxy/authproxy.cfg
+  docker run --rm --volumes-from authproxy-config alpine:3.3 sed -i "s/API_HOST/${api_host}/g" /etc/duoauthproxy/authproxy.cfg
+  docker run --rm --volumes-from authproxy-config alpine:3.3 sed -i "s/IKEY/${ikey}/g" /etc/duoauthproxy/authproxy.cfg
+  docker run --rm --volumes-from authproxy-config alpine:3.3 sed -i "s/SKEY/${skey}/g" /etc/duoauthproxy/authproxy.cfg
 
   # Start duoauthproxy.
   caps="
