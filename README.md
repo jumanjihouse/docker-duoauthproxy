@@ -113,6 +113,24 @@ We push the tags automatically from the test harness, and
 we occasionally delete old tags from the Docker hub by hand.
 
 
+### View labels
+
+Each built image has labels that generally follow http://label-schema.org/
+
+We add a label, `ci-build-url`, that is not currently part of the schema.
+This extra label provides a permanent link to the CI build for the image.
+
+View the ci-build-url label on a built image:
+
+    docker inspect \
+      -f '{{ index .Config.Labels "io.github.jumanjiman.ci-build-url" }}' \
+      jumanjiman/duoauthproxy
+
+Query all the labels inside a built image:
+
+    docker inspect jumanjiman/duoauthproxy | jq -M '.[].Config.Labels'
+
+
 ### Configure the authproxy
 
 The image assumes the configuration is at `/etc/duoauthproxy/authproxy.cfg`

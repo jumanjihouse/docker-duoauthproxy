@@ -17,6 +17,7 @@ smitty docker run --name builder duoauthproxy-builder bash -c "tar czf /tmp/duoa
 # NOTE: The build args are set by environment vars in circle.yml
 smitty docker cp builder:/tmp/duoauthproxy.tgz runtime/
 smitty docker build \
+  --build-arg CI_BUILD_URL=${CIRCLE_BUILD_URL} \
   --build-arg VCS_REF=${VCS_REF} \
   --build-arg BUILD_DATE=${BUILD_DATE} \
   --build-arg VERSION=${VERSION} \

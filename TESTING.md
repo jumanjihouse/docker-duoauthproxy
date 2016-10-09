@@ -67,5 +67,6 @@ Output resembles:
     ✓ chgrp is available
     ✓ ln is available
     ✓ chmod is available
+    ✓ ci-build-url label is present
 
-    15 tests, 0 failures
+    16 tests, 0 failures
