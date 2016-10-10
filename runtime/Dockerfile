@@ -17,6 +17,9 @@ LABEL \
 
 RUN apk upgrade --update && \
     apk add python && \
+    apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/main \
+      'libressl2.4-libssl>=2.4.3-r1' \
+      && \
     rm -f /var/cache/apk/* && \
     adduser -D -s /sbin/nologin duo
 
