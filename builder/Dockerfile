@@ -8,7 +8,7 @@ ENV VERSION 2.4.17
 
 RUN apk upgrade --update --available && \
     apk add --no-cache -X http://dl-4.alpinelinux.org/alpine/edge/main \
-      'libressl-dev>=2.4.3-r1' \
+      'libressl-dev>=2.4.4-r0' \
       && \
     apk add \
       bash \

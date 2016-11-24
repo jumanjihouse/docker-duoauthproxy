@@ -12,11 +12,11 @@ patch -p0 < /root/config.patch
 
 pushd pkgs
 # Erase bundled dirs.
-rm -fr pyopenssl*
+find . -maxdepth 1 -type d -iname 'pyopenssl*' -exec rm -fr {} +
 rm -fr six*
 
 # Download and extract new bundles.
-curl -L -o pyopenssl.tgz https://github.com/pyca/pyopenssl/archive/16.1.0.tar.gz
+curl -L -o pyopenssl.tgz https://github.com/pyca/pyopenssl/archive/16.2.0.tar.gz
 tar xzf pyopenssl.tgz
 
 # python-six extracts by default as gutworth-six-<hash>.
