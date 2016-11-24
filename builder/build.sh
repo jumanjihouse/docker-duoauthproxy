@@ -12,7 +12,7 @@ patch -p0 < /root/config.patch
 
 pushd pkgs
 # Erase bundled dirs.
-rm -fr pyopenssl*
+find . -maxdepth 1 -type d -iname 'pyopenssl*' -exec rm -fr {} +
 rm -fr six*
 
 # Download and extract new bundles.
