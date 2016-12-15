@@ -221,8 +221,8 @@ within the built image.
 
 View the Duo end-user license agreement:
 
-    eula='/opt/duoauthproxy/doc/eula-linux.txt'
-    docker run --rm -it --entrypoint sh duoauthproxy -c "cat $eula"
+    dir='/opt/duoauthproxy/doc/'
+    docker run --rm -it --entrypoint sh duoauthproxy -c "find $dir -type f -exec cat {} +"
 
 Get a list of licenses for third-party components within the images:
 
