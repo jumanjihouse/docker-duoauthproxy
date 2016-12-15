@@ -12,5 +12,4 @@ cd duoauthproxy*
 export PYTHON=$(which python)
 make
 cd duoauthproxy-build
-patch -p0 < /root/install.patch
-./install
+./install --install-dir=/opt/duoauthproxy --service-user=duo --create-init-script=yes

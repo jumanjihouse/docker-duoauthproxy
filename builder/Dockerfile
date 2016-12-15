@@ -17,7 +17,6 @@ RUN apk upgrade --update --available && \
       libffi-dev \
       libgcc \
       make \
-      patch \
       py-setuptools \
       python-dev \
       tar \
@@ -25,7 +24,6 @@ RUN apk upgrade --update --available && \
     adduser -D duo
 
 # Build and install authproxy.
-COPY install.patch /root/
 ADD https://dl.duosecurity.com/duoauthproxy-${VERSION}-src.tgz /root/
 COPY build.sh /root/
 RUN /root/build.sh
