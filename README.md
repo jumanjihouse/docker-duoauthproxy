@@ -12,7 +12,7 @@ Docker hub: [https://registry.hub.docker.com/u/jumanjiman/duoauthproxy/](https:/
 <br />
 Image metadata: [https://microbadger.com/#/images/jumanjiman/duoauthproxy](https://microbadger.com/#/images/jumanjiman/duoauthproxy)
 <br />
-Current version: Duo Authproxy 2.4.17
+Current version: Duo Authproxy 2.4.18
 ([release notes](https://duo.com/support/documentation/authproxy-notes))
 
 :warning: Duo Authproxy 2.4.17 resolves
@@ -221,8 +221,8 @@ within the built image.
 
 View the Duo end-user license agreement:
 
-    eula='/opt/duoauthproxy/doc/eula-linux.txt'
-    docker run --rm -it --entrypoint sh duoauthproxy -c "cat $eula"
+    dir='/opt/duoauthproxy/doc/'
+    docker run --rm -it --entrypoint sh duoauthproxy -c "find $dir -type f -exec cat {} +"
 
 Get a list of licenses for third-party components within the images:
 

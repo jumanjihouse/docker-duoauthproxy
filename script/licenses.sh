@@ -9,8 +9,9 @@ set -e
 eula='/opt/duoauthproxy/doc/eula-linux.txt'
 dir='/root/duoauthproxy-*-src'
 echo
-echo '==== Duo license ===='
-smitty docker run --rm -it --entrypoint sh duoauthproxy -c "cat $eula"
+echo '==== Duo licenses ===='
+dir='/opt/duoauthproxy/doc/'
+smitty docker run --rm -it --entrypoint sh duoauthproxy -c "find $dir -type f -exec cat {} +"
 echo
 echo '==== List of 3rd-party licenses ===='
 smitty docker run --rm -it --entrypoint sh duoauthproxy-builder -c "find $dir -iname '*license*'"
