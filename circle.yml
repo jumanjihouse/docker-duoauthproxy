@@ -1,7 +1,6 @@
 # https://circleci.com/docs/docker
 machine:
   environment:
-    # If you change this, you must also change builder/Dockerfile.
     VERSION: 2.4.18
     BUILD_DATE: $(date +%Y%m%dT%H%M)
     VCS_REF: ${CIRCLE_SHA1:0:7}
