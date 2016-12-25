@@ -15,8 +15,8 @@ Image metadata: [https://microbadger.com/#/images/jumanjiman/duoauthproxy](https
 Current version: Duo Authproxy 2.4.19
 ([release notes](https://duo.com/support/documentation/authproxy-notes))
 
-:warning: Duo Authproxy 2.4.17 resolves
-[DUO-PSA-2016-001](https://duo.com/labs/psa/duo-psa-2016-001).
+:warning: Duo Authproxy 2.4.18 resolves
+[DUO-PSA-2016-002](https://duo.com/labs/psa/duo-psa-2016-002).
 
 
 Overview
