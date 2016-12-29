@@ -1,11 +1,8 @@
-FROM alpine:3.4
+FROM alpine:3.5
 
 ARG VERSION
 
 RUN apk upgrade --update --available && \
-    apk add --no-cache -X http://dl-4.alpinelinux.org/alpine/edge/main \
-      'libressl-dev>=2.4.4-r0' \
-      && \
     apk add \
       bash \
       curl \
@@ -15,6 +12,7 @@ RUN apk upgrade --update --available && \
       libc-dev \
       libffi-dev \
       libgcc \
+      'libressl-dev>=2.4.4-r0' \
       make \
       py-setuptools \
       python-dev \

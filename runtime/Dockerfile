@@ -1,4 +1,4 @@
-FROM alpine:3.4
+FROM alpine:3.5
 
 ARG CI_BUILD_URL
 ARG BUILD_DATE
@@ -16,9 +16,9 @@ LABEL \
     io.github.jumanjiman.vcs-url="https://github.com/jumanjihouse/docker-duoauthproxy.git"
 
 RUN apk upgrade --update && \
-    apk add python && \
-    apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/main \
-      'libressl2.4-libssl>=2.4.3-r1' \
+    apk add \
+      python \
+      'libressl2.4-libssl>=2.4.4-r0' \
       && \
     rm -f /var/cache/apk/* && \
     adduser -D -s /sbin/nologin duo
