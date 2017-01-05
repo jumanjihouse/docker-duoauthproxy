@@ -187,6 +187,13 @@ Alternatively, you can run the container in detached mode from the CLI:
       --cap-add=setuid \
       jumanjiman/duoauthproxy:latest
 
+The above example uses `--read-only` and `--cap-drop all` as recommended by the
+CIS Docker Security Benchmarks:
+
+* [Docker 1.6](https://benchmarks.cisecurity.org/tools2/docker/CIS_Docker_1.6_Benchmark_v1.0.0.pdf)
+* [Docker 1.11](https://benchmarks.cisecurity.org/tools2/docker/CIS_Docker_1.11.0_Benchmark_v1.0.0.pdf)
+* [Docker 1.12](https://benchmarks.cisecurity.org/tools2/docker/CIS_Docker_1.12.0_Benchmark_v1.0.0.pdf)
+
 
 ### Forward logs to a central syslog server
 
