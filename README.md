@@ -96,6 +96,18 @@ Docker hub.
 How-to
 ------
 
+### Report issues
+
+* For issues with the Docker image build of this git repo:
+  https://github.com/jumanjihouse/docker-duoauthproxy/issues
+
+* For security issues with the upstream Duo AuthProxy:
+  https://duo.com/legal/security-response
+
+To contribute enhancements to this repo, please see
+[`CONTRIBUTING.md`](CONTRIBUTING.md) in this repo.
+
+
 ### Pull an already-built image
 
 These images are built as part of the test harness on CircleCI.
