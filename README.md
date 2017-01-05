@@ -30,21 +30,6 @@ This repo provides a way to build Duo Authentication Proxy into
 a docker image and run it as a container.
 
 
-### Build integrity
-
-The repo is set up to compile the software in a "builder" container,
-then copy the built binaries into a "runtime" container free of development tools.
-
-![workflow](assets/docker_hub_workflow.png)
-
-An unattended test harness runs the build script for each of
-the supported distributions and runs acceptance tests, including
-authentication against a test radius server with live Duo integration
-as a second factor. If all tests pass on master branch in the
-unattended test harness, it pushes the built images to the
-Docker hub.
-
-
 ### Network diagram
 
 ![Duo network diagram](https://duo.com/assets/img/documentation/authproxy/radius-network-diagram.png)
@@ -91,6 +76,21 @@ Flow:
 * [2fa on Citrix Netscaler via the Duo AuthProxy](https://duo.com/support/documentation/citrix_netscaler)
 * [Duo 2fa integrations](https://duo.com/support/documentation)
 * [Trustwave managed 2fa](http://www.trustwave.com/Services/Managed-Security/Managed-Two-Factor-Authentication/)
+
+
+### Build integrity
+
+The repo is set up to compile the software in a "builder" container,
+then copy the built binaries into a "runtime" container free of development tools.
+
+![workflow](assets/docker_hub_workflow.png)
+
+An unattended test harness runs the build script for each of
+the supported distributions and runs acceptance tests, including
+authentication against a test radius server with live Duo integration
+as a second factor. If all tests pass on master branch in the
+unattended test harness, it pushes the built images to the
+Docker hub.
 
 
 How-to
