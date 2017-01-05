@@ -6,7 +6,7 @@ Please follow [Github Flow](https://guides.github.com/introduction/flow/index.ht
 This is a rough outline of the workflow:
 
 * Create a topic branch from where you want to base your work. This is usually master.
-* Make commits of logical units.
+* Make commits of logical units (and add tests!).
 * Make sure your commit messages are in the proper format (see below).
 * Push your changes to a topic branch in your fork of the repository.
 * Submit a pull request.
