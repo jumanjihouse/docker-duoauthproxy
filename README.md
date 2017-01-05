@@ -219,7 +219,8 @@ All files in this repo are subject to [LICENSE](LICENSE) (also in this repo).
 Your usage of the built docker image is subject to the terms
 within the built image.
 
-View the Duo end-user license agreement:
+View the Duo end-user license agreement and the open-source licenses
+of 3rd-party libraries used in the proxy:
 
     dir='/opt/duoauthproxy/doc/'
     docker run --rm -it --entrypoint sh duoauthproxy -c "find $dir -type f -exec cat {} +"
