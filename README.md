@@ -117,12 +117,17 @@ into the docker hub.
     docker pull jumanjiman/duoauthproxy:latest
 
 The "latest" tag always points to the latest version.
-Additional tags include `<upstream_authproxy_version>-<git_hash>`
-to correlate any image to both the authproxy version and a
-git commit from this repo.
+In general, you should prefer to use a pessimistic (i.e., specific) tag.
+The runtime image on Docker hub has tags that match:
+
+    <upstream_authproxy_version>-<build_date>T<build_time>-<git_hash>
+
+These tags allow to correlate any image to the authproxy version, the build date and time,
+and the git commit from this repo that was used to build the image.
 
 We push the tags automatically from the test harness, and
 we occasionally delete old tags from the Docker hub by hand.
+See https://hub.docker.com/r/jumanjiman/duoauthproxy/tags/ for released tags.
 
 
 ### View labels
