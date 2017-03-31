@@ -1,7 +1,7 @@
 # https://circleci.com/docs/docker
 machine:
   environment:
-    VERSION: 2.4.20
+    VERSION: 2.4.21
     BUILD_DATE: $(date +%Y%m%dT%H%M)
     VCS_REF: ${CIRCLE_SHA1:0:7}
     TAG: ${VERSION}-${BUILD_DATE}-git-${VCS_REF}
