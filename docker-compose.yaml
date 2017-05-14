@@ -1,0 +1,19 @@
+version: '2.1'
+
+services:
+  builder:
+    image: duoauthproxy-builder
+    build:
+      context: builder/
+      args:
+        - VERSION
+
+  runtime:
+    image: duoauthproxy
+    build:
+      context: runtime/
+      args:
+        - BUILD_DATE
+        - VCS_REF
+        - VERSION
+        - CI_BUILD_URL=${CIRCLE_BUILD_URL}
