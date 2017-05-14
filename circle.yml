@@ -1,13 +1,6 @@
 # https://circleci.com/docs/docker
 machine:
   environment:
-    VERSION: 2.4.21
-    BUILD_DATE: $(date +%Y%m%dT%H%M)
-    VCS_REF: ${CIRCLE_SHA1:0:7}
-    TAG: ${VERSION}-${BUILD_DATE}-git-${VCS_REF}
-    # Tag for radiusd and radclient used in test harness.
-    # For local testing, set this in `environment` as described in README.
-    RADIUS_TAG: 3.0.12-r2-20170514T1405-git-182695d
     BATS_VER: 0.4.0
   pre:
     - sudo curl -L -o /usr/bin/docker 'http://s3-external-1.amazonaws.com/circle-downloads/docker-1.9.1-circleci-cp-workaround'

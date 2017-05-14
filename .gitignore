@@ -2,3 +2,4 @@
 *.swp
 runtime/duoauthproxy.tgz
 environment
+ci/vars

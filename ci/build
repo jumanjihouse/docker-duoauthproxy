@@ -1,12 +1,18 @@
 #!/bin/bash
 set -e
 
-if [[ -z "${VERSION}" ]]; then
-  echo "You must export the VERSION environment variable to build" >&2
-  echo "See circle.yml for an example"
-  exit 1
-fi
+cat > ci/vars <<EOF
+  VERSION=2.4.21
+  BUILD_DATE=$(date +%Y%m%dT%H%M)
+  VCS_REF=${CIRCLE_SHA1:0:7}
+  TAG=${VERSION}-${BUILD_DATE}-git-${VCS_REF}
 
+  # Tag for radiusd and radclient used in test harness.
+  # For local testing, override this in "environment" as described in TESTING.md.
+  RADIUS_TAG=3.0.12-r2-20170514T1405-git-182695d
+EOF
+
+. ci/vars
 . ci/functions
 
 # Build the authproxy.

@@ -24,6 +24,7 @@
 # Any failure causes script to fail.
 set -e
 
+. ci/vars
 . ci/functions
 [[ -r environment ]] && . environment
 
