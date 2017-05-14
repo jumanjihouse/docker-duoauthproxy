@@ -10,16 +10,18 @@ cat > ci/vars <<EOF
   # Tag for radiusd and radclient used in test harness.
   # For local testing, override this in "environment" as described in TESTING.md.
   RADIUS_TAG=3.0.12-r2-20170514T1405-git-182695d
+
+  export VERSION
+  export BUILD_DATE
+  export VCS_REF
+  export RADIUS_TAG
 EOF
 
 . ci/vars
 . ci/functions
 
 # Build the authproxy.
-smitty docker build \
-  --build-arg VERSION=${VERSION} \
-  -t duoauthproxy-builder \
-  builder/
+smitty docker-compose build builder
 
 # Remove artifacts from previous runs.
 smitty rm -fr duoauthproxy.tgz || :
@@ -30,10 +32,4 @@ smitty docker run --name builder duoauthproxy-builder bash -c "tar czf /tmp/duoa
 
 # Copy tarball into place and build runtime image.
 smitty docker cp builder:/tmp/duoauthproxy.tgz runtime/
-smitty docker build \
-  --build-arg CI_BUILD_URL=${CIRCLE_BUILD_URL} \
-  --build-arg VCS_REF=${VCS_REF} \
-  --build-arg BUILD_DATE=${BUILD_DATE} \
-  --build-arg VERSION=${VERSION} \
-  -t duoauthproxy \
-  runtime/
+smitty docker-compose build runtime

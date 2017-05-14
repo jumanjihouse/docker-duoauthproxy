@@ -3,3 +3,4 @@
 runtime/duoauthproxy.tgz
 environment
 ci/vars
+fixtures/*/authproxy.cfg

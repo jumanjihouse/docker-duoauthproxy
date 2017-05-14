@@ -1,7 +1,5 @@
 FROM alpine:3.5
 
-ARG VERSION
-
 RUN apk upgrade --update --available && \
     apk add \
       bash \
@@ -19,6 +17,8 @@ RUN apk upgrade --update --available && \
       tar \
     && rm -f /var/cache/apk/* && \
     adduser -D duo
+
+ARG VERSION
 
 # Build and install authproxy.
 ADD https://dl.duosecurity.com/duoauthproxy-${VERSION}-src.tgz /root/
