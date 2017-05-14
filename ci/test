@@ -42,7 +42,7 @@ smitty docker pull jumanjiman/radclient:${RADIUS_TAG}
 smitty docker pull jumanjiman/radiusd:${RADIUS_TAG}
 
 # Re-tag the radius images to keep the test script simple.
-smitty docker tag -f jumanjiman/radclient:${RADIUS_TAG} radclient
-smitty docker tag -f jumanjiman/radiusd:${RADIUS_TAG} radiusd
+smitty docker tag jumanjiman/radclient:${RADIUS_TAG} radclient
+smitty docker tag jumanjiman/radiusd:${RADIUS_TAG} radiusd
 
 bats test/test_*.bats
