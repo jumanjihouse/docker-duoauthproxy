@@ -1,5 +1,15 @@
 version: '2.1'
 
+networks:
+  testnet:
+    driver: bridge
+    enable_ipv6: false
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.254.0/24
+          gateway: 192.168.254.1
+
 services:
   builder:
     image: duoauthproxy-builder
@@ -8,7 +18,7 @@ services:
       args:
         - VERSION
 
-  runtime:
+  runtime: &runtime
     image: duoauthproxy
     build:
       context: runtime/
@@ -17,3 +27,87 @@ services:
         - VCS_REF
         - VERSION
         - CI_BUILD_URL=${CIRCLE_BUILD_URL}
+    read_only: true
+    cap_drop:
+      - all
+    cap_add:
+      - setgid
+      - setuid
+    pids_limit: 20
+    cpu_shares: 512
+    mem_limit: 100M
+    shm_size: 16M
+
+  config_allow:
+    image: config_allow
+    build:
+      context: fixtures/allow
+      dockerfile: Dockerfile
+
+  config_deny:
+    image: config_deny
+    build:
+      context: fixtures/deny
+      dockerfile: Dockerfile
+
+  authproxy_allow:
+    <<: *runtime
+    volumes_from:
+      - config_allow:ro
+    networks:
+      testnet:
+        ipv4_address: 192.168.254.253
+
+  authproxy_deny:
+    <<: *runtime
+    volumes_from:
+      - config_deny:ro
+    networks:
+      testnet:
+        ipv4_address: 192.168.254.252
+
+  radiusd:
+    image: jumanjiman/radiusd:${RADIUS_TAG}
+    env_file: ci/vars
+    command: -f -l stdout
+    networks:
+      testnet:
+        ipv4_address: 192.168.254.254
+    ports:
+      - 1812:1812/udp
+    tty: true
+    read_only: true
+    cap_drop:
+      - all
+    pids_limit: 10
+    cpu_shares: 512
+    mem_limit: 100M
+    shm_size: 16M
+
+  radclient: &radclient
+    image: jumanjiman/radclient:${RADIUS_TAG}
+    networks:
+      testnet:
+    stdin_open: true
+    tty: true
+    read_only: true
+    cap_drop:
+      - all
+    pids_limit: 10
+    cpu_shares: 512
+    mem_limit: 32M
+    shm_size: 16M
+
+  status:
+    <<: *radclient
+    command: -f /root/status_message 192.168.254.254:1812 status testing123
+
+  auth_accept:
+    <<: *radclient
+    # Connect to service "authproxy_allow".
+    command: -f /root/test.conf 192.168.254.253:1812 auth foo
+
+  auth_reject:
+    <<: *radclient
+    # Connect to service "authproxy_deny".
+    command: -f /root/test.conf 192.168.254.252:1812 auth foo

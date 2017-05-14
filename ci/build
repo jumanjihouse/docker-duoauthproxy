@@ -14,6 +14,7 @@ cat > ci/vars <<EOF
   export VERSION
   export BUILD_DATE
   export VCS_REF
+  export RADIUS_TAG
 EOF
 
 . ci/vars
