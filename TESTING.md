@@ -47,7 +47,7 @@ The file holds keys for the integrations you created above.
 
 Run the test harness on a single image:
 
-    script/test.sh
+    ci/test
 
 The test harness uses [BATS](https://github.com/sstephenson/bats).
 Output resembles:

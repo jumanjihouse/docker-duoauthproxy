@@ -223,7 +223,7 @@ Copy the modified unit file into place and activate:
 
 Build an image locally on a host with Docker:
 
-    script/build.sh
+    ci/build
 
 Run a container interactively from the built image:
 
