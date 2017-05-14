@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-. script/functions
+. ci/functions
 
 # Show licenses using the same commands as in README.
 # If either of these commands fails, the build aborts.

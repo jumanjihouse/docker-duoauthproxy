@@ -24,7 +24,7 @@
 # Any failure causes script to fail.
 set -e
 
-. script/functions
+. ci/functions
 [[ -r environment ]] && . environment
 
 if [[ "x" = "x${RADIUS_TAG}" ]]; then

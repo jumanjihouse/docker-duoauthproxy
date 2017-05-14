@@ -26,14 +26,14 @@ dependencies:
     - docker info
     - docker version
     - ss -tulpn
-    - script/build.sh
+    - ci/build
 
 test:
   pre:
     - docker ps -a
   override:
-    - script/licenses.sh
-    - script/test.sh
+    - ci/licenses.sh
+    - ci/test
 
 # https://circleci.com/docs/configuration#deployment
 # https://circleci.com/docs/environment-variables
