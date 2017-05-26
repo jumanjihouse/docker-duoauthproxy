@@ -1,0 +1,11 @@
+--- config.mk.orig
++++ config.mk
+@@ -12 +12 @@
+-CRYPTOGRAPHY_VER = cryptography-1.5.2
++CRYPTOGRAPHY_VER = cryptography-1.9
+@@ -19 +19 @@
+-PYOPENSSL_VER = pyOpenSSL-16.2.0
++PYOPENSSL_VER = pyopenssl-17.0.0
+@@ -31 +31 @@
+-PYASN1_VER = pyasn1-0.1.9
++PYASN1_VER = asn1crypto-0.22.0

@@ -1,4 +1,4 @@
-FROM alpine:3.5
+FROM alpine:3.6
 
 RUN apk upgrade --update --available && \
     apk add \
@@ -12,6 +12,7 @@ RUN apk upgrade --update --available && \
       libgcc \
       'libressl-dev>=2.4.4-r0' \
       make \
+      patch \
       py-setuptools \
       python-dev \
       tar \
@@ -23,4 +24,5 @@ ARG VERSION
 # Build and install authproxy.
 ADD https://dl.duosecurity.com/duoauthproxy-${VERSION}-src.tgz /root/
 COPY build.sh /root/
+COPY config.patch /root/
 RUN /root/build.sh
