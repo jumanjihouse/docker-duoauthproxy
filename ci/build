@@ -9,7 +9,7 @@ cat > ci/vars <<EOF
 
   # Tag for radiusd and radclient used in test harness.
   # For local testing, override this in "environment" as described in TESTING.md.
-  RADIUS_TAG=3.0.12-r2-20170514T1405-git-182695d
+  RADIUS_TAG=3.0.13-r1-20170611T0026-git-e6ec264
 
   export VERSION
   export BUILD_DATE
