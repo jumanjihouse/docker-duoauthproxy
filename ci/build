@@ -2,7 +2,7 @@
 set -e
 
 cat > ci/vars <<EOF
-  VERSION=2.5.4
+  VERSION=2.6.0
   BUILD_DATE=$(date +%Y%m%dT%H%M)
   VCS_REF=${CIRCLE_SHA1:0:7}
   TAG=\${VERSION}-\${BUILD_DATE}-git-\${VCS_REF}
