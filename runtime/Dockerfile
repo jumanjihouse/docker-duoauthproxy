@@ -11,8 +11,8 @@ RUN apk upgrade --update && \
 # Use ADD, not COPY, to keep image small.
 ADD duoauthproxy.tgz /
 
-COPY harden.sh /usr/sbin/harden.sh
-RUN /usr/sbin/harden.sh
+COPY harden /usr/sbin/harden
+RUN /usr/sbin/harden
 
 COPY authproxy.cfg /etc/duoauthproxy/authproxy.cfg
 USER duo

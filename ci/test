@@ -23,9 +23,10 @@
 
 # Any failure causes script to fail.
 set -e
+set -u
 
 . ci/vars
-. ci/functions
+. ci/functions.sh
 [[ -r environment ]] && . environment
 
 if [[ "x" = "x${RADIUS_TAG}" ]]; then
@@ -60,3 +61,7 @@ echo
 echo Invoke BATS tests.
 echo
 bats test/test_*.bats
+
+echo
+echo Check every file for things like trailing whitespace.
+ci/check-files -v1

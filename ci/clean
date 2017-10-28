@@ -1,4 +1,6 @@
 #!/bin/sh
+set -e
+set -u
 
 # Remove artifacts from previous runs.
 rm -fr runtime/duoauthproxy.tgz || :
