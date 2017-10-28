@@ -25,7 +25,7 @@
 set -e
 
 . ci/vars
-. ci/functions
+. ci/functions.sh
 [[ -r environment ]] && . environment
 
 if [[ "x" = "x${RADIUS_TAG}" ]]; then

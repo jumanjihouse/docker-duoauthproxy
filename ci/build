@@ -18,7 +18,7 @@ cat > ci/vars <<EOF
 EOF
 
 . ci/vars
-. ci/functions
+. ci/functions.sh
 
 # Build the authproxy.
 smitty docker-compose build builder

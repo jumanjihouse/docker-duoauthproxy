@@ -21,7 +21,7 @@ jobs:
       - run:
           name: Show licenses
           command: |
-            ci/licenses.sh
+            ci/licenses
 
       - run:
           name: Test the image

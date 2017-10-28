@@ -23,6 +23,6 @@ ARG VERSION
 
 # Build and install authproxy.
 ADD https://dl.duosecurity.com/duoauthproxy-${VERSION}-src.tgz /root/
-COPY build.sh /root/
+COPY build /root/
 COPY config.patch /root/
-RUN /root/build.sh
+RUN /root/build
