@@ -1,10 +1,11 @@
 #!/bin/bash
 set -e
+set -u
 
 cat > ci/vars <<EOF
   VERSION=2.6.0
   BUILD_DATE=$(date +%Y%m%dT%H%M)
-  VCS_REF=${CIRCLE_SHA1:0:7}
+  VCS_REF=$(git describe --abbrev=7 --tags --always)
   TAG=\${VERSION}-\${BUILD_DATE}-git-\${VCS_REF}
 
   # Tag for radiusd and radclient used in test harness.

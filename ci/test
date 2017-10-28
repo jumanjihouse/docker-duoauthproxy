@@ -23,6 +23,7 @@
 
 # Any failure causes script to fail.
 set -e
+set -u
 
 . ci/vars
 . ci/functions.sh
