@@ -13,38 +13,22 @@ usage() {
 EOF
 }
 
-# http://wiki.bash-hackers.org/howto/getopts_tutorial
-while getopts ":dhv:" opt; do
-  case ${opt} in
-    d)
-      verbosity=2
-      ;;
-    h)
-      usage
-      exit 0
-      ;;
-    v)
-      verbosity=${OPTARG}
-      ;;
-    \:)
-      usage
-      err option -${OPTARG} requires an argument
-      exit 1
-      ;;
-    \?|*)
-      usage
-      err invalid option -${OPTARG}
-      exit 1
-      ;;
-  esac
-done
-
-# After the shift, $* contains non-option arguments.
-shift $((OPTIND-1))
+main() {
+  # https://github.com/koalaman/shellcheck/wiki/SC2044
+  code=0
+  while IFS= read -r -d '' file; do
+    debug checking "${file}"
+    check_binary "${file}"        || code=1
+    check_shell_syntax "${file}"  || code=1
+    check_whitespace "${file}"    || code=1
+  done < <(git ls-files -z)
+  return ${code}
+}
 
 is_binary() {
   file="$1"
-  file --mime "${file}" | grep 'binary$' &> /dev/null && code=0 || code=1
+  code=1
+  file --mime "${file}" | grep 'binary$' &> /dev/null && code=0 || :
   return ${code}
 }
 
@@ -78,20 +62,47 @@ check_shell_syntax() {
 check_whitespace() {
   file="$1"
   if $(is_binary "${file}"); then
-    : # Binary files can have trailing whitespace.
-  elif grep -E '\s$' "${file}"; then
+    # Binary files can have trailing whitespace.
+    return 0
+  fi
+  if [[ ${verbosity} -ge 2 ]]; then
+    grep -E '\s$' "${file}"
+  else
+    grep -E '\s$' "${file}" &> /dev/null
+  fi
+  if [[ $? -eq 0 ]]; then
     err \"${file}\" has trailing whitespace
     return 1
   fi
 }
 
-# https://github.com/koalaman/shellcheck/wiki/SC2044
-code=0
-while IFS= read -r -d '' file; do
-  debug checking "${file}"
-  check_binary "${file}"        || code=1
-  check_shell_syntax "${file}"  || code=1
-  check_whitespace "${file}"    || code=1
-done < <(git ls-files -z)
+# http://wiki.bash-hackers.org/howto/getopts_tutorial
+while getopts ":dhv:" opt; do
+  case ${opt} in
+    d)
+      verbosity=2
+      ;;
+    h)
+      usage
+      exit 0
+      ;;
+    v)
+      verbosity=${OPTARG}
+      ;;
+    \:)
+      usage
+      err option -${OPTARG} requires an argument
+      exit 1
+      ;;
+    \?|*)
+      usage
+      err invalid option -${OPTARG}
+      exit 1
+      ;;
+  esac
+done
 
-exit ${code}
+# After the shift, $* contains non-option arguments.
+shift $((OPTIND-1))
+
+main
