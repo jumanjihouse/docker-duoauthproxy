@@ -13,35 +13,6 @@ usage() {
 EOF
 }
 
-# http://wiki.bash-hackers.org/howto/getopts_tutorial
-while getopts ":dhv:" opt; do
-  case ${opt} in
-    d)
-      verbosity=2
-      ;;
-    h)
-      usage
-      exit 0
-      ;;
-    v)
-      verbosity=${OPTARG}
-      ;;
-    \:)
-      usage
-      err option -${OPTARG} requires an argument
-      exit 1
-      ;;
-    \?|*)
-      usage
-      err invalid option -${OPTARG}
-      exit 1
-      ;;
-  esac
-done
-
-# After the shift, $* contains non-option arguments.
-shift $((OPTIND-1))
-
 main() {
   # https://github.com/koalaman/shellcheck/wiki/SC2044
   code=0
@@ -105,5 +76,33 @@ check_whitespace() {
   fi
 }
 
+# http://wiki.bash-hackers.org/howto/getopts_tutorial
+while getopts ":dhv:" opt; do
+  case ${opt} in
+    d)
+      verbosity=2
+      ;;
+    h)
+      usage
+      exit 0
+      ;;
+    v)
+      verbosity=${OPTARG}
+      ;;
+    \:)
+      usage
+      err option -${OPTARG} requires an argument
+      exit 1
+      ;;
+    \?|*)
+      usage
+      err invalid option -${OPTARG}
+      exit 1
+      ;;
+  esac
+done
+
+# After the shift, $* contains non-option arguments.
+shift $((OPTIND-1))
 
 main
