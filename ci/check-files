@@ -18,6 +18,9 @@ main() {
   code=0
   while IFS= read -r -d '' file; do
     debug checking "${file}"
+    if $(is_directory "{file}"); then
+      continue # A git submodule appears as a directory in "git ls-files".
+    fi
     check_binary "${file}"        || code=1
     check_shell_syntax "${file}"  || code=1
     check_whitespace "${file}"    || code=1
@@ -28,14 +31,18 @@ main() {
 is_binary() {
   file="$1"
   code=1
-  file --mime "${file}" | grep 'binary$' &> /dev/null && code=0 || :
+  file --mime --dereference "${file}" | grep 'binary$' &> /dev/null && code=0 || :
   return ${code}
+}
+
+is_directory() {
+  file --mime --dereference "${file}" | grep 'directory' &> /dev/null
 }
 
 is_shell_script() {
   file="$1"
   code=1
-  file --mime "${file}" | grep 'shellscript' &> /dev/null && code=0 || :
+  file --mime --dereference "${file}" | grep 'shellscript' &> /dev/null && code=0 || :
   [[ "${file}" =~ .sh$ ]] && code=0 || :
   return ${code}
 }
