@@ -79,8 +79,15 @@ check_shell_syntax() {
 check_whitespace() {
   file="$1"
   if $(is_binary "${file}"); then
-    : # Binary files can have trailing whitespace.
-  elif grep -E '\s$' "${file}"; then
+    # Binary files can have trailing whitespace.
+    return 0
+  fi
+  if [[ ${verbosity} -ge 2 ]]; then
+    grep -E '\s$' "${file}"
+  else
+    grep -E '\s$' "${file}" &> /dev/null
+  fi
+  if [[ $? -eq 0 ]]; then
     err \"${file}\" has trailing whitespace
     return 1
   fi

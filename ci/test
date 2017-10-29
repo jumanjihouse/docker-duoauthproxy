@@ -64,4 +64,6 @@ bats test/test_*.bats
 
 echo
 echo Check every file for things like trailing whitespace.
+# Hint: -v1 shows just the names of offending files.
+#       -v2 shows lines with trailing whitespace.
 ci/check-files -v1
