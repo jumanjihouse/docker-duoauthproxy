@@ -44,7 +44,8 @@ shift $((OPTIND-1))
 
 is_binary() {
   file="$1"
-  file --mime "${file}" | grep 'binary$' &> /dev/null && code=0 || code=1
+  code=1
+  file --mime "${file}" | grep 'binary$' &> /dev/null && code=0 || :
   return ${code}
 }
 
