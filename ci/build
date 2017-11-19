@@ -1,21 +1,24 @@
 #!/bin/bash
 set -e
 set -u
+set -o pipefail
+
+################################################################################
+# Build the docker image(s). Invoke as "ci/build".
+################################################################################
+
+[[ -r environment ]] && . environment
 
 cat > ci/vars <<EOF
-  VERSION=2.6.0
-  BUILD_DATE=$(date +%Y%m%dT%H%M)
-  VCS_REF=$(git describe --abbrev=7 --tags --always)
-  TAG=\${VERSION}-\${BUILD_DATE}-git-\${VCS_REF}
+# shellcheck shell=bash
+declare -rx  VERSION=2.6.0
+declare -rx  BUILD_DATE=$(date +%Y%m%dT%H%M)
+declare -rx  VCS_REF=$(git describe --abbrev=7 --tags --always)
+declare -rx  TAG=\${VERSION}-\${BUILD_DATE}-git-\${VCS_REF}
 
-  # Tag for radiusd and radclient used in test harness.
-  # For local testing, override this in "environment" as described in TESTING.md.
-  RADIUS_TAG=3.0.13-r2-20171017T0119-git-50f537b
-
-  export VERSION
-  export BUILD_DATE
-  export VCS_REF
-  export RADIUS_TAG
+# Tag for radiusd and radclient used in test harness.
+# For local testing, override this in "environment" as described in TESTING.md.
+declare -rx  RADIUS_TAG=\${RADIUS_TAG:-3.0.13-r2-20171017T0119-git-50f537b}
 EOF
 
 . ci/vars

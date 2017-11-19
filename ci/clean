@@ -1,6 +1,11 @@
-#!/bin/sh
+#!/bin/bash
 set -e
 set -u
+set -o pipefail
+
+################################################################################
+# Clean the local build environment. Invoke as "ci/clean".
+################################################################################
 
 # Remove artifacts from previous runs.
 rm -fr runtime/duoauthproxy.tgz || :

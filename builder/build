@@ -1,8 +1,26 @@
 #!/bin/bash
 set -e
 set -x
+set -o pipefail
 
+################################################################################
+# Build and install Duo Authproxy.
+#
 # https://duo.com/support/documentation/authproxy_reference#installation
+################################################################################
+
+finish() {
+  declare -ri RC=$?
+
+  if [ ${RC} -eq 0 ]; then
+    echo "$0" OK >&2
+  else
+    echo "$0" failed with exit code ${RC} >&2
+    exit ${RC}
+  fi
+}
+
+trap finish EXIT
 
 # Build and install authproxy.
 cd /root
@@ -33,7 +51,8 @@ tar xzf asn1crypto.tgz
 
 popd
 
-export PYTHON=$(which python)
+PYTHON="$(which python)"
+declare -rx PYTHON
 make
 cd duoauthproxy-build
 ./install --install-dir=/opt/duoauthproxy --service-user=duo --create-init-script=yes
