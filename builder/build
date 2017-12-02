@@ -25,7 +25,10 @@ trap finish EXIT
 # Build and install authproxy.
 cd /root
 tar xzf duoauthproxy-*-src.tgz
-cd duoauthproxy*
+# Beginning with alpine 3.7, we need a trailing slash to avoid...
+#   + cd duoauthproxy-2.6.0-src duoauthproxy-2.6.0-src.tgz
+#   /root/build: line 28: cd: too many arguments
+cd duoauthproxy*/
 
 patch -p0 -i /root/config.patch
 

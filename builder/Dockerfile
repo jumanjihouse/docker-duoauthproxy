@@ -1,4 +1,4 @@
-FROM alpine:3.6
+FROM alpine:3.7
 
 RUN apk upgrade --update --available && \
     apk add \
@@ -10,7 +10,7 @@ RUN apk upgrade --update --available && \
       libc-dev \
       libffi-dev \
       libgcc \
-      'libressl-dev>=2.4.4-r0' \
+      'libressl-dev>=2.6.3-r0' \
       make \
       patch \
       py-setuptools \
