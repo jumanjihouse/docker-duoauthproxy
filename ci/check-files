@@ -31,8 +31,9 @@ main() {
     fi
     check_binary     "${file}" || RC=1
     check_shell      "${file}" || RC=1
-    check_whitespace "${file}" || RC=1
   done < <(git ls-files -z)
+
+  check_whitespace || RC=1
 
   return ${RC}
 }
@@ -109,35 +110,25 @@ check_shell() {
 }
 
 check_whitespace() {
-  declare -r file="$1"
-  declare -i RC=1
+  local -i RC=1
+  local output
+  # This command identifies whitespace errors and leftover conflict markers.
+  # It works only on committed files, so we have to warn on dirty git tree.
+  output="$(git diff-tree --check "$(git hash-object -t tree /dev/null)" HEAD)"
+  readonly output
 
-  if is_binary "${file}"; then
-    # Binary files can have trailing whitespace.
-    return 0
-  fi
-
-  if [[ ${VERBOSITY} -ge 2 ]]; then
-    grep -E '\s$' "${file}" -n
+  if [[ -z "${output}" ]]; then
+    RC=0
+    info whitespace OK
   else
-    grep -E '\s$' "${file}" &> /dev/null
+    err Found whitespace errors. See below.
+    echo "${output}" >&2
   fi
 
-  case $? in
-    0)
-      # Found whitespace.
-      RC=1
-      err \""${file}"\" has trailing whitespace
-      ;;
-    1)
-      # Did not find whitespace.
-      RC=0
-      ;;
-    2|*)
-      # grep command failed.
-      exit 2
-      ;;
-  esac
+  if is_git_dirty; then
+    warn 'Git repo has uncommitted changes; recommend to commit and re-run tests.'
+    git status
+  fi
 
   return ${RC}
 }
