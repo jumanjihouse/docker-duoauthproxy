@@ -61,6 +61,10 @@ is_ci() {
   [[ -n "${CIRCLECI:-}" ]]
 }
 
+is_git_dirty() {
+  [[ -n "$(git diff --shortstat)" ]]
+}
+
 check_top_dir() {
   declare git_dir
   git_dir="$(git rev-parse --show-toplevel)"
