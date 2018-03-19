@@ -7,6 +7,7 @@ set -o pipefail
 # Publish the image(s) to Docker Hub.
 ################################################################################
 
+# shellcheck disable=SC1091
 . ci/vars
 
 # shellcheck disable=SC2154

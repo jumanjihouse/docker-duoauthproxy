@@ -1,3 +1,4 @@
+---
 # https://circleci.com/docs/docker
 version: 2
 jobs:
@@ -16,21 +17,22 @@ jobs:
       - run:
           name: Build the image
           command: |
-            ci/build
+            ci/build.sh
 
       - run:
           name: Show licenses
           command: |
-            ci/licenses
+            ci/licenses.sh
 
       - run:
           name: Test the image
           command: |
-            ci/test
+            ci/test.sh
 
       - deploy:
           name: Deploy from master branch
+          # yamllint disable rule:line-length
           command: |
             if [[ ${CIRCLE_BRANCH} = master ]] && [[ -z ${CIRCLE_PR_NUMBER} ]]; then
-              ci/publish
+              ci/publish.sh
             fi

@@ -7,6 +7,7 @@ set -o pipefail
 # Build the docker image(s). Invoke as "ci/build".
 ################################################################################
 
+# shellcheck disable=SC1091
 [[ -r environment ]] && . environment
 
 cat > ci/vars <<EOF
@@ -21,7 +22,10 @@ declare -rx  TAG=\${VERSION}-\${BUILD_DATE}-git-\${VCS_REF}
 declare -rx  RADIUS_TAG=\${RADIUS_TAG:-3.0.15-r3-20171202T1557-git-296bc50}
 EOF
 
+# shellcheck disable=SC1091
 . ci/vars
+
+# shellcheck disable=SC1091
 . ci/functions.sh
 
 # Build the authproxy.

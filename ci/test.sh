@@ -22,13 +22,16 @@
 # ================================================================================
 
 # Any failure causes script to fail.
-set -e
-set -u
+set -eEu
 set -o pipefail
 
+# shellcheck disable=SC1091
 [[ -r environment ]] && . environment
 
+# shellcheck disable=SC1091
 . ci/vars
+
+# shellcheck disable=SC1091
 . ci/functions.sh
 
 echo
@@ -39,14 +42,14 @@ info "VCS_REF is ${VCS_REF}"
 info "BUILD_DATE is ${BUILD_DATE}"
 info "TAG is ${TAG}"
 
-echo
-echo Check every file for things like trailing whitespace.
-# Hint: -v1 shows just the names of offending files.
-#       -v2 shows lines with trailing whitespace.
-if command -v shellcheck &> /dev/null; then
-  shellcheck ci/vars
-fi
-ci/check-files -v2
+# Ensure dependencies are up-to-date.
+. ci/bootstrap.sh
+
+# Run various checks unrelated to Puppet.
+run_precommit
+
+# Check for whitespace errors.
+check_whitespace
 
 echo
 echo Configure fixtures.
@@ -75,3 +78,7 @@ echo
 echo Invoke BATS tests.
 echo
 bats test/test_*.bats
+
+echo
+echo Tear down containers.
+smitty docker-compose down
