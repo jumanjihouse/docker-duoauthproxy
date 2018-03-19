@@ -162,8 +162,8 @@ your custom config should contain a `[main]` section that includes:
 The `contrib` directory in this git repo contains a sample config
 for an authproxy that provides secondary authentication to NetScaler.
 
-See [https://duo.com/support/documentation/authproxy_reference]
-(https://duo.com/support/documentation/authproxy_reference) for all options.
+See [https://duo.com/support/documentation/authproxy_reference](https://duo.com/support/documentation/authproxy_reference)
+for all options.
 
 
 ### Run the authproxy
