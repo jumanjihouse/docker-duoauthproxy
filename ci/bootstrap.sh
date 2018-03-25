@@ -60,34 +60,4 @@ run_precommit() {
   pre-commit run ${PRECOMMIT_OPTS}
 }
 
-check_whitespace() {
-  local -i RC=1
-  local output
-  echo '---> whitespace'
-
-  # This command identifies whitespace errors and leftover conflict markers.
-  # It works only on committed files, so we have to warn on dirty git tree.
-  output="$(git diff-tree --check "$(git hash-object -t tree /dev/null)" HEAD)"
-  readonly output
-
-  if [[ -z "${output}" ]]; then
-    RC=0
-    echo OK
-  else
-    err Found whitespace errors. See below.
-    echo "${output}" >&2
-  fi
-
-  if is_git_dirty; then
-    echo 'Git repo has uncommitted changes; recommend to commit and re-run tests.'
-    git status
-  fi
-
-  return ${RC}
-}
-
-is_git_dirty() {
-  [[ -n "$(git diff --shortstat)" ]]
-}
-
 main

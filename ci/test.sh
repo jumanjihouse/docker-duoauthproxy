@@ -48,9 +48,6 @@ info "TAG is ${TAG}"
 # Run various checks unrelated to Puppet.
 run_precommit
 
-# Check for whitespace errors.
-check_whitespace
-
 echo
 echo Configure fixtures.
 cp -f fixtures/authproxy.cfg fixtures/allow/authproxy.cfg
