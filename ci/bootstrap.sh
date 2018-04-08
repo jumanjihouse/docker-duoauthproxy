@@ -12,6 +12,7 @@ set -o pipefail
 main() {
   install_precommit
   add_upstream_git_remote
+  fetch_upstream
 }
 
 trap finish EXIT
@@ -47,11 +48,15 @@ add_upstream_git_remote() {
   fi
 }
 
+fetch_upstream() {
+  git fetch upstream
+}
+
 run_precommit() {
   echo '---> run pre-commit'
 
   # http://pre-commit.com/#pre-commit-run
-  readonly DEFAULT_PRECOMMIT_OPTS="--all-files --verbose"
+  readonly DEFAULT_PRECOMMIT_OPTS="--all-files --verbose --hook-stage manual"
 
   # Allow user to override our defaults by setting an env var.
   readonly PRECOMMIT_OPTS="${PRECOMMIT_OPTS:-$DEFAULT_PRECOMMIT_OPTS}"

@@ -38,3 +38,15 @@ repos:
       - id: git-dirty  # Configure in .gitignore
       - id: shellcheck
       - id: shfmt
+
+  - repo: https://github.com/jorisroovers/gitlint
+    sha: master
+    hooks:
+      - id: gitlint
+        stages: [commit-msg]
+
+      - id: gitlint
+        entry: gitlint --commits upstream/master..
+        exclude: .*
+        always_run: true
+        stages: [manual]

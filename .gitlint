@@ -1,0 +1,6 @@
+# http://jorisroovers.github.io/gitlint/configuration/
+[general]
+ignore=body-is-missing
+
+[title-max-length]
+line-length=72
