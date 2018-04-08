@@ -8,6 +8,7 @@ repos:
     sha: v1.11.0
     hooks:
       - id: yamllint
+        args: ['--format', 'parsable', '--strict']
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
     sha: v1.2.3
