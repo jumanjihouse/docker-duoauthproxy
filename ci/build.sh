@@ -10,7 +10,7 @@ set -o pipefail
 # shellcheck disable=SC1091
 [[ -r environment ]] && . environment
 
-cat > ci/vars <<EOF
+cat >ci/vars <<EOF
 # shellcheck shell=bash
 declare -rx  VERSION=2.7.0
 declare -rx  BUILD_DATE=$(date +%Y%m%dT%H%M)
@@ -33,7 +33,7 @@ smitty docker-compose build builder
 
 # Remove artifacts from previous runs.
 smitty rm -fr duoauthproxy.tgz || :
-docker rm -f builder &> /dev/null || :
+docker rm -f builder &>/dev/null || :
 
 # Create a tarball of built authproxy.
 smitty docker run --name builder duoauthproxy-builder bash -c "tar czf /tmp/duoauthproxy.tgz /opt/duoauthproxy"

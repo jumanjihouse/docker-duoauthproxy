@@ -35,14 +35,14 @@ install_precommit() {
     export PATH="${PATH}:${python_path}/bin"
   fi
 
-  if ! command -v pre-commit &> /dev/null; then
+  if ! command -v pre-commit &>/dev/null; then
     # Install for just this user. Does not need root.
     pip install --user -Iv --compile --no-cache-dir pre-commit
   fi
 }
 
 add_upstream_git_remote() {
-  if ! git remote show upstream &> /dev/null; then
+  if ! git remote show upstream &>/dev/null; then
     smitty git remote add upstream https://github.com/jumanjihouse/docker-duoauthproxy.git
   fi
 }

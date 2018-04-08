@@ -52,12 +52,12 @@ echo
 echo Configure fixtures.
 cp -f fixtures/authproxy.cfg fixtures/allow/authproxy.cfg
 sed -i "s/API_HOST/${API_HOST}/g" fixtures/allow/authproxy.cfg
-sed -i "s/IKEY/${IKEY_ALLOW}/g"   fixtures/allow/authproxy.cfg
-sed -i "s/SKEY/${SKEY_ALLOW}/g"   fixtures/allow/authproxy.cfg
+sed -i "s/IKEY/${IKEY_ALLOW}/g" fixtures/allow/authproxy.cfg
+sed -i "s/SKEY/${SKEY_ALLOW}/g" fixtures/allow/authproxy.cfg
 cp -f fixtures/authproxy.cfg fixtures/deny/authproxy.cfg
 sed -i "s/API_HOST/${API_HOST}/g" fixtures/deny/authproxy.cfg
-sed -i "s/IKEY/${IKEY_DENY}/g"    fixtures/deny/authproxy.cfg
-sed -i "s/SKEY/${SKEY_DENY}/g"    fixtures/deny/authproxy.cfg
+sed -i "s/IKEY/${IKEY_DENY}/g" fixtures/deny/authproxy.cfg
+sed -i "s/SKEY/${SKEY_DENY}/g" fixtures/deny/authproxy.cfg
 
 echo
 echo Build or pull supplementary images we use to test.
