@@ -30,7 +30,7 @@ tar xzf duoauthproxy-*-src.tgz
 #   /root/build: line 28: cd: too many arguments
 cd duoauthproxy*/
 
-PYTHON="$(which python)"
+PYTHON="$(command -v python)"
 declare -rx PYTHON
 make
 cd duoauthproxy-build
