@@ -15,6 +15,11 @@ jobs:
       - checkout
 
       - run:
+          name: Bootstrap the devenv
+          command: |
+            ci/bootstrap.sh
+
+      - run:
           name: Build the image
           command: |
             ci/build.sh
