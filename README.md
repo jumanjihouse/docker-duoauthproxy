@@ -18,6 +18,24 @@ Current version: Duo Authproxy 2.7.0
 :warning: Duo Authproxy 2.4.18 resolves
 [DUO-PSA-2016-002](https://duo.com/labs/psa/duo-psa-2016-002).
 
+**Table of Contents**
+
+- [Overview](#overview)
+  - [Network diagram](#network-diagram)
+  - [References](#references)
+  - [Build integrity](#build-integrity)
+- [How-to](#how-to)
+  - [Report issues](#report-issues)
+  - [Pull an already-built image](#pull-an-already-built-image)
+  - [View labels](#view-labels)
+  - [Configure the authproxy](#configure-the-authproxy)
+  - [Run the authproxy](#run-the-authproxy)
+  - [Forward logs to a central syslog server](#forward-logs-to-a-central-syslog-server)
+  - [Build the docker image](#build-the-docker-image)
+  - [Test locally](#test-locally)
+- [Licenses](#licenses)
+- [Thanks](#thanks)
+
 
 Overview
 --------
