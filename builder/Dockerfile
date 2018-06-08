@@ -11,11 +11,13 @@ RUN apk upgrade --update --available && \
       libffi-dev \
       libgcc \
       'libressl-dev>=2.6.3-r0' \
+      linux-headers \
       make \
       patch \
       py-setuptools \
       python-dev \
       tar \
+      zlib-dev \
     && rm -f /var/cache/apk/* && \
     adduser -D duo
 
