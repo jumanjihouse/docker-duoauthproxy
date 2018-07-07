@@ -1,9 +1,9 @@
-FROM alpine:3.7
+FROM alpine:3.8
 
 RUN apk upgrade --update && \
     apk add \
       python \
-      'libressl2.6-libssl>=2.6.3-r0' \
+      'libressl2.7-libssl>=2.7.4-r0' \
       && \
     rm -f /var/cache/apk/* && \
     adduser -D -s /sbin/nologin duo
