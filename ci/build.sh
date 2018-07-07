@@ -19,7 +19,7 @@ declare -rx  TAG=\${VERSION}-\${BUILD_DATE}-git-\${VCS_REF}
 
 # Tag for radiusd and radclient used in test harness.
 # For local testing, override this in "environment" as described in TESTING.md.
-declare -rx  RADIUS_TAG=\${RADIUS_TAG:-3.0.15-r3-20171202T1557-git-296bc50}
+declare -rx  RADIUS_TAG=\${RADIUS_TAG:-3.0.17-r2-20180707T2348-git-edb4d92}
 EOF
 
 # shellcheck disable=SC1091
