@@ -44,18 +44,18 @@
   [[ ${groups} -eq 1 ]]
 }
 
-@test "bash is not installed" {
-  run docker run --rm --entrypoint ls duoauthproxy /bin/bash
-  [[ ${status} -ne 0 ]]
+@test "bash is available" {
+  run docker run --rm --entrypoint sh duoauthproxy -c "command -v bash"
+  [[ ${status} -eq 0 ]]
 }
 
 @test "chown is available" {
-  run docker run --rm --entrypoint chown duoauthproxy -h
+  run docker run --rm --entrypoint chown duoauthproxy --help
   [[ ${output} =~ "Usage: chown" ]]
 }
 
 @test "chgrp is available" {
-  run docker run --rm --entrypoint chgrp duoauthproxy -h
+  run docker run --rm --entrypoint chgrp duoauthproxy --help
   [[ ${output} =~ "Usage: chgrp" ]]
 }
 

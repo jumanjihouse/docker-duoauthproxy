@@ -33,15 +33,15 @@ rm -fr /etc/crontabs
 rm -fr /etc/periodic
 
 # Remove all but a handful of admin commands.
-find /sbin /usr/sbin ! -type d \
+find /usr/sbin ! -type d \
   -a ! -name nologin \
   -delete
 
+# Centos 7.5 does not have /sbin.
 readonly sysdirs="
   /bin
   /etc
   /lib
-  /sbin
   /opt
   /usr
 "
@@ -52,10 +52,10 @@ readonly sysdirs="
 # Therefore restrict the find to sysdirs listed above.
 #
 # shellcheck disable=SC2086
-find ${sysdirs} -xdev -type d -perm +0002 -exec chmod o-w {} +
+find ${sysdirs} -xdev -type d -perm /0002 -exec chmod o-w {} +
 #
 # shellcheck disable=SC2086
-find ${sysdirs} -xdev -type f -perm +0002 -exec chmod o-w {} +
+find ${sysdirs} -xdev -type f -perm /0002 -exec chmod o-w {} +
 
 # Remove crufty...
 #   /etc/shadow-
@@ -75,7 +75,7 @@ find ${sysdirs} -xdev -type d \
 # Remove all suid files.
 #
 # shellcheck disable=SC2086
-find ${sysdirs} -xdev -type f -a -perm +4000 -delete
+find ${sysdirs} -xdev -type f -a -perm /4000 -delete
 
 # Remove init scripts since we do not use them.
 rm -fr /etc/init.d
@@ -108,4 +108,4 @@ sed -i -r '/^(duo)/!d' /etc/group
 sed -i -r '/^(duo)/!d' /etc/passwd
 
 # Remove interactive login shell for everybody but unprivileged user.
-sed -i -r '/^duo:/! s#^(.*):[^:]*$#\1:/sbin/nologin#' /etc/passwd
+sed -i -r '/^duo:/! s#^(.*):[^:]*$#\1:/usr/sbin/nologin#' /etc/passwd

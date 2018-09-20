@@ -62,7 +62,7 @@ Output resembles:
     ok duo group exists
     ok duo is the only group account
     ok duo is the only group account
-    ok bash is not installed
+    ok bash is available
     ok chown is available
     ok chgrp is available
     ok ln is available

@@ -1,25 +1,26 @@
-FROM alpine:3.7
+FROM centos:7.5.1804
 
-RUN apk upgrade --update --available && \
-    apk add \
+RUN \
+    yum install -y \
       bash \
       curl \
       python \
       gcc \
-      gmp-dev \
-      libc-dev \
-      libffi-dev \
+      gmp-devel \
+      libc-devel \
+      libffi-devel \
       libgcc \
-      'libressl-dev>=2.6.3-r0' \
+      openssl-devel \
       linux-headers \
       make \
       patch \
+      procps \
       py-setuptools \
-      python-dev \
+      python-devel \
       tar \
-      zlib-dev \
-    && rm -f /var/cache/apk/* && \
-    adduser -D duo
+      zlib-devel \
+    && rm -fr /var/cache/yum && \
+    useradd duo
 
 ARG VERSION
 

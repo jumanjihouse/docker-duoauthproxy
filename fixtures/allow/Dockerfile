@@ -1,3 +1,4 @@
 FROM busybox
-COPY authproxy.cfg /etc/duoauthproxy/
-VOLUME /etc/duoauthproxy/
+COPY authproxy.cfg /opt/duoauthproxy/conf/
+COPY ca-bundle.crt /opt/duoauthproxy/conf/
+VOLUME /opt/duoauthproxy/conf/
