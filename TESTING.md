@@ -52,21 +52,21 @@ Run the test harness on a single image:
 The test harness uses [BATS](https://github.com/sstephenson/bats).
 Output resembles:
 
-    ✓ radius auth via duo authproxy is allowed when 2fa succeeds
-    ✓ radius auth via duo authproxy is rejected when 2fa fails
-    ✓ There are no suid files
-    ✓ duo user exists
-    ✓ duo user is denied interactive login
-    ✓ duo is the only user account
-    ✓ duo is the only user account
-    ✓ duo group exists
-    ✓ duo is the only group account
-    ✓ duo is the only group account
-    ✓ bash is not installed
-    ✓ chown is available
-    ✓ chgrp is available
-    ✓ ln is available
-    ✓ chmod is available
-    ✓ ci-build-url label is present
+    ok radius auth via duo authproxy is allowed when 2fa succeeds
+    ok radius auth via duo authproxy is rejected when 2fa fails
+    ok There are no suid files
+    ok duo user exists
+    ok duo user is denied interactive login
+    ok duo is the only user account
+    ok duo is the only user account
+    ok duo group exists
+    ok duo is the only group account
+    ok duo is the only group account
+    ok bash is available
+    ok chown is available
+    ok chgrp is available
+    ok ln is available
+    ok chmod is available
+    ok ci-build-url label is present
 
     16 tests, 0 failures

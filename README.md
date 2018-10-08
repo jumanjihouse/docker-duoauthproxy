@@ -12,15 +12,14 @@ Docker hub: [https://registry.hub.docker.com/u/jumanjiman/duoauthproxy/](https:/
 <br />
 Image metadata: [https://microbadger.com/#/images/jumanjiman/duoauthproxy](https://microbadger.com/#/images/jumanjiman/duoauthproxy)
 <br />
-Current version: Duo Authproxy 2.9.0
+Current version: Duo Authproxy 2.10.1
 ([release notes](https://duo.com/support/documentation/authproxy-notes))
 
-:warning: Duo Authproxy 2.4.18 resolves
-[DUO-PSA-2016-002](https://duo.com/labs/psa/duo-psa-2016-002).
 
 **Table of Contents**
 
 - [Overview](#overview)
+  - [Warnings](#warnings)
   - [Network diagram](#network-diagram)
   - [References](#references)
   - [Build integrity](#build-integrity)
@@ -46,6 +45,26 @@ and hosted Duo or Trustwave two-factor authentication (2fa).
 
 This repo provides a way to build Duo Authentication Proxy into
 a docker image and run it as a container.
+
+
+### Warnings
+
+:warning: Upstream authproxy introduced breaking changes effective 2.10.0:
+
+* Authproxy absolutely needs to write to a logfile.<br/>
+  The image declares `/opt/duoauthproxy/log` as a volume.
+
+* Authproxy no longer has the `-c CONFIG` option.<br/>
+  The path to config is hard-coded.
+
+* Authproxy requires `FIPS_mode` that is not in LibreSSL.<br/>
+  Therefore the image is based on Centos, not Alpine.<br/>
+  See https://marc.info/?l=openbsd-misc&m=139819485423701&w=2 for details.
+
+
+:warning: Duo Authproxy 2.4.18 resolves
+[DUO-PSA-2016-002](https://duo.com/labs/psa/duo-psa-2016-002).
+
 
 
 ### Network diagram

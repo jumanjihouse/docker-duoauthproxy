@@ -50,10 +50,17 @@ run_precommit
 
 echo
 echo Configure fixtures.
+if docker ps -a --format '{{.Names}}' --filter Name=src | grep -E '^src$' &>/dev/null; then
+  docker rm -fv src
+fi
+docker create --name=src duoauthproxy sh
+docker cp src:/opt/duoauthproxy/conf/ca-bundle.crt fixtures/
+cp -f fixtures/ca-bundle.crt fixtures/allow/
 cp -f fixtures/authproxy.cfg fixtures/allow/authproxy.cfg
 sed -i "s/API_HOST/${API_HOST}/g" fixtures/allow/authproxy.cfg
 sed -i "s/IKEY/${IKEY_ALLOW}/g" fixtures/allow/authproxy.cfg
 sed -i "s/SKEY/${SKEY_ALLOW}/g" fixtures/allow/authproxy.cfg
+cp -f fixtures/ca-bundle.crt fixtures/deny/
 cp -f fixtures/authproxy.cfg fixtures/deny/authproxy.cfg
 sed -i "s/API_HOST/${API_HOST}/g" fixtures/deny/authproxy.cfg
 sed -i "s/IKEY/${IKEY_DENY}/g" fixtures/deny/authproxy.cfg

@@ -1,12 +1,12 @@
-FROM alpine:3.7
+FROM centos:7.5.1804
 
-RUN apk upgrade --update && \
-    apk add \
+RUN \
+    yum install -y \
       python \
-      'libressl2.6-libssl>=2.6.3-r0' \
+      openssl \
       && \
-    rm -f /var/cache/apk/* && \
-    adduser -D -s /sbin/nologin duo
+    rm -fr /var/cache/yum && \
+    useradd -s /sbin/nologin duo
 
 # Use ADD, not COPY, to keep image small.
 ADD duoauthproxy.tgz /
@@ -14,10 +14,14 @@ ADD duoauthproxy.tgz /
 COPY harden /usr/sbin/harden
 RUN /usr/sbin/harden
 
+RUN mkdir -p /opt/duoauthproxy/log; \
+    chown -R duo:duo /opt/duoauthproxy/log
+VOLUME /opt/duoauthproxy/log
+
 COPY authproxy.cfg /etc/duoauthproxy/authproxy.cfg
 USER duo
 ENTRYPOINT ["/opt/duoauthproxy/bin/authproxy"]
-CMD ["-c", "/etc/duoauthproxy/authproxy.cfg"]
+VOLUME /opt/duoauthproxy/conf/
 
 ARG CI_BUILD_URL
 ARG BUILD_DATE

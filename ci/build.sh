@@ -12,7 +12,7 @@ set -o pipefail
 
 cat >ci/vars <<EOF
 # shellcheck shell=bash
-declare -rx  VERSION=2.9.0
+declare -rx  VERSION=2.10.1
 declare -rx  BUILD_DATE=$(date +%Y%m%dT%H%M)
 declare -rx  VCS_REF=$(git describe --abbrev=7 --tags --always)
 declare -rx  TAG=\${VERSION}-\${BUILD_DATE}-git-\${VCS_REF}

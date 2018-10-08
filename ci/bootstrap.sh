@@ -56,7 +56,7 @@ run_precommit() {
   echo '---> run pre-commit'
 
   # http://pre-commit.com/#pre-commit-run
-  readonly DEFAULT_PRECOMMIT_OPTS="--all-files --verbose --hook-stage manual"
+  readonly DEFAULT_PRECOMMIT_OPTS="--all-files --hook-stage manual"
 
   # Allow user to override our defaults by setting an env var.
   readonly PRECOMMIT_OPTS="${PRECOMMIT_OPTS:-$DEFAULT_PRECOMMIT_OPTS}"
