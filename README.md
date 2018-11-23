@@ -12,7 +12,7 @@ Docker hub: [https://registry.hub.docker.com/u/jumanjiman/duoauthproxy/](https:/
 <br />
 Image metadata: [https://microbadger.com/#/images/jumanjiman/duoauthproxy](https://microbadger.com/#/images/jumanjiman/duoauthproxy)
 <br />
-Current version: Duo Authproxy 2.10.1
+Current version: Duo Authproxy 2.11.0
 ([release notes](https://duo.com/support/documentation/authproxy-notes))
 
 
