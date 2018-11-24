@@ -37,6 +37,8 @@ repos:
       - id: git-check  # Configure in .gitattributes
       - id: git-dirty  # Configure in .gitignore
       - id: require-ascii
+      - id: script-must-have-extension
+      - id: script-must-not-have-extension
       - id: shellcheck
       - id: shfmt
 

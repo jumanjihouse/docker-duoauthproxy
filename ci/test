@@ -43,7 +43,7 @@ info "BUILD_DATE is ${BUILD_DATE}"
 info "TAG is ${TAG}"
 
 # Ensure dependencies are up-to-date.
-. ci/bootstrap.sh
+. ci/bootstrap
 
 # Run various checks unrelated to Puppet.
 run_precommit
