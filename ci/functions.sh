@@ -7,32 +7,32 @@
 # Defaults.
 declare -i VERBOSITY=${VERBOSITY:-1}
 
-smitty() {
+run() {
   echo
   echo
-  echo "SMITTY: $*"
+  echo "[RUN] $*"
   "$@"
 }
 
 err() {
-  echo ERROR: "$*" >&2
+  echo "[ERROR] $*" >&2
 }
 
 info() {
   if [[ ${VERBOSITY} -ge 1 ]]; then
-    echo INFO: "$*" >&2
+    echo "[INFO] $*" >&2
   fi
 }
 
 warn() {
   if [[ ${VERBOSITY} -ge 1 ]]; then
-    echo WARN: "$*" >&2
+    echo "[WARN] $*" >&2
   fi
 }
 
 debug() {
   if [[ ${VERBOSITY} -ge 2 ]]; then
-    echo DEBUG: "$*" >&2
+    echo "[DEBUG] $*" >&2
   fi
 }
 

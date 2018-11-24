@@ -43,7 +43,7 @@ info "BUILD_DATE is ${BUILD_DATE}"
 info "TAG is ${TAG}"
 
 # Ensure dependencies are up-to-date.
-. ci/bootstrap.sh
+. ci/bootstrap
 
 # Run various checks unrelated to Puppet.
 run_precommit
@@ -74,9 +74,9 @@ docker-compose pull --parallel radiusd radclient
 
 echo
 echo Start the containers we need to test.
-smitty docker-compose up -d authproxy_allow
-smitty docker-compose up -d authproxy_deny
-smitty docker-compose up -d radiusd
+run docker-compose up -d authproxy_allow
+run docker-compose up -d authproxy_deny
+run docker-compose up -d radiusd
 
 echo
 echo Invoke BATS tests.
@@ -85,4 +85,4 @@ bats test/test_*.bats
 
 echo
 echo Tear down containers.
-smitty docker-compose down
+run docker-compose down

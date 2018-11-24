@@ -17,27 +17,27 @@ jobs:
       - run:
           name: Bootstrap the devenv
           command: |
-            ci/bootstrap.sh
+            ci/bootstrap
 
       - run:
           name: Build the image
           command: |
-            ci/build.sh
+            ci/build
 
       - run:
           name: Show licenses
           command: |
-            ci/licenses.sh
+            ci/licenses
 
       - run:
           name: Test the image
           command: |
-            ci/test.sh
+            ci/test
 
       - deploy:
           name: Deploy from master branch
           # yamllint disable rule:line-length
           command: |
             if [[ ${CIRCLE_BRANCH} = master ]] && [[ -z ${CIRCLE_PR_NUMBER} ]]; then
-              ci/publish.sh
+              ci/publish
             fi
