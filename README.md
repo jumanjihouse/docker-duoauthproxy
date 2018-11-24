@@ -12,7 +12,7 @@ Docker hub: [https://registry.hub.docker.com/u/jumanjiman/duoauthproxy/](https:/
 <br />
 Image metadata: [https://microbadger.com/#/images/jumanjiman/duoauthproxy](https://microbadger.com/#/images/jumanjiman/duoauthproxy)
 <br />
-Current version: Duo Authproxy 2.10.1
+Current version: Duo Authproxy 2.11.0
 ([release notes](https://duo.com/support/documentation/authproxy-notes))
 
 
@@ -56,6 +56,7 @@ a docker image and run it as a container.
 
 * Authproxy no longer has the `-c CONFIG` option.<br/>
   The path to config is hard-coded.
+  The hard-coded path is `/opt/duoauthproxy/conf/authproxy.cfg`.
 
 * Authproxy requires `FIPS_mode` that is not in LibreSSL.<br/>
   Therefore the image is based on Centos, not Alpine.<br/>
@@ -205,10 +206,13 @@ for all options.
 
 ### Run the authproxy
 
+:warning: Since version 2.10.0, upstream no longer has the `-c CONFIG_PATH` option.
+Instead, the path is now hard-coded as `/opt/duoauthproxy/conf/authproxy.cfg`.
+
 Edit the sample config file or provide your own:
 
     vim contrib/authproxy.cfg
-    sudo cp contrib/authproxy.cfg /etc/duoauthproxy/
+    sudo cp contrib/authproxy.cfg /opt/duoauthproxy/conf/
 
 Copy the sample unit file into place and activate:
 
@@ -222,7 +226,7 @@ Alternatively, you can run the container in detached mode from the CLI:
       --name duoauthproxy \
       -p 1812:1812/udp \
       -p 18120:18120/udp \
-      -v /etc/duoauthproxy:/etc/duoauthproxy:ro \
+      -v /opt/duoauthproxy/conf:/opt/duoauthproxy/conf:ro \
       --read-only \
       --cap-drop=all \
       --cap-add=setgid \
