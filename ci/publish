@@ -14,8 +14,9 @@ set -o pipefail
 # shellcheck disable=SC2154
 docker login -u "${user}" -p "${pass}"
 run docker tag duoauthproxy jumanjiman/duoauthproxy:"${TAG}"
-run docker push jumanjiman/duoauthproxy:"${TAG}"
 run docker tag duoauthproxy jumanjiman/duoauthproxy:latest
+docker images | grep duoauthproxy
+run docker push jumanjiman/duoauthproxy:"${TAG}"
 run docker push jumanjiman/duoauthproxy:latest
 docker logout
 
