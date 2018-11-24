@@ -29,15 +29,15 @@ EOF
 . ci/functions.sh
 
 # Build the authproxy.
-smitty docker-compose build builder
+run docker-compose build builder
 
 # Remove artifacts from previous runs.
-smitty rm -fr duoauthproxy.tgz || :
+run rm -fr duoauthproxy.tgz || :
 docker rm -f builder &>/dev/null || :
 
 # Create a tarball of built authproxy.
-smitty docker run --name builder duoauthproxy-builder bash -c "tar czf /tmp/duoauthproxy.tgz /opt/duoauthproxy"
+run docker run --name builder duoauthproxy-builder bash -c "tar czf /tmp/duoauthproxy.tgz /opt/duoauthproxy"
 
 # Copy tarball into place and build runtime image.
-smitty docker cp builder:/tmp/duoauthproxy.tgz runtime/
-smitty docker-compose build runtime
+run docker cp builder:/tmp/duoauthproxy.tgz runtime/
+run docker-compose build runtime

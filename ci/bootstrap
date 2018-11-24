@@ -5,8 +5,6 @@ set -o pipefail
 ################################################################################
 # Bootstrap local dev environment.
 ################################################################################
-
-# Import smitty.
 . ci/functions.sh
 
 main() {
@@ -44,7 +42,7 @@ install_precommit() {
 
 add_upstream_git_remote() {
   if ! git remote show upstream &>/dev/null; then
-    smitty git remote add upstream https://github.com/jumanjihouse/docker-duoauthproxy.git
+    run git remote add upstream https://github.com/jumanjihouse/docker-duoauthproxy.git
   fi
 }
 
