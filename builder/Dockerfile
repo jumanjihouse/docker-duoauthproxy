@@ -28,3 +28,8 @@ ARG VERSION
 ADD https://dl.duosecurity.com/duoauthproxy-${VERSION}-src.tgz /root/
 COPY build /root/
 RUN /root/build
+
+RUN mkdir -p /opt/duoauthproxy/log \
+    && chown -R duo:duo /opt/duoauthproxy/log
+VOLUME /opt/duoauthproxy/log
+
