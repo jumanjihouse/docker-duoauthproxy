@@ -32,4 +32,3 @@ RUN /root/build
 RUN mkdir -p /opt/duoauthproxy/log \
     && chown -R duo:duo /opt/duoauthproxy/log
 VOLUME /opt/duoauthproxy/log
-
