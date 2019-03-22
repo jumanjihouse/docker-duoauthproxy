@@ -34,4 +34,4 @@ PYTHON="$(command -v python)"
 declare -rx PYTHON
 make
 cd duoauthproxy-build
-./install --install-dir=/opt/duoauthproxy --service-user=duo --create-init-script=yes
+./install --install-dir=/opt/duoauthproxy --service-user=duo --log-group=duo --create-init-script=yes

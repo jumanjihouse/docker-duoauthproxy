@@ -14,6 +14,7 @@ RUN \
       linux-headers \
       make \
       patch \
+      perl \
       procps \
       py-setuptools \
       python-devel \
