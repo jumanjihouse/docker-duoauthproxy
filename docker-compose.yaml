@@ -69,7 +69,6 @@ services:
 
   radiusd:
     image: jumanjiman/radiusd:${RADIUS_TAG}
-    env_file: ci/vars
     command: -f -l stdout
     networks:
       testnet:
