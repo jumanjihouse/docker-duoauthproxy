@@ -1,4 +1,4 @@
-FROM centos:7.5.1804
+FROM centos:7.6.1810
 
 RUN \
     yum install -y \
@@ -14,6 +14,7 @@ RUN \
       linux-headers \
       make \
       patch \
+      perl \
       procps \
       py-setuptools \
       python-devel \
