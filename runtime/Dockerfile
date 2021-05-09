@@ -1,4 +1,4 @@
-FROM centos:7.8.2003
+FROM centos:8.3.2011
 
 RUN \
     yum install -y \
